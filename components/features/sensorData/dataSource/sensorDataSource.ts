@@ -1,6 +1,6 @@
 import { SensorData } from "../entities/sensorData";
 
-export class SensorDataService{
+export class SensorDataSource{
     sensorData:SensorData[];
 
     constructor(){
@@ -14,6 +14,9 @@ export class SensorDataService{
         return this.sensorData;
     }
 
+    /*la inserciones las hará arduino
+    esto solo es para tener datos estáticos y mostrar una función
+    */
     add(sensorData:SensorData){
         sensorData.id = this.sensorData.length + 1;
         this.sensorData.push(sensorData);
