@@ -18,7 +18,7 @@ export function GraphicsView() {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Gráfica de Sensores</Text>
+            <Text style={styles.title}>Histórico del Día</Text>
             <LineChart
                 style={styles.chart}
                 data={chartData.map(d => d.waterLevel)}
