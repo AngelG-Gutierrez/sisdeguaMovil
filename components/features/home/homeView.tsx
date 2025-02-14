@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 import { ProbabilityInfo } from "../probability/probabilityInfo";
+import { GraphicsView } from "../graphics/graphicsView";
 
 export function HomeView(){
 
@@ -42,7 +43,7 @@ export function HomeView(){
                 <ProbabilityInfo/>
             </View>
             <View style={styles.container_graphic}>
-
+                <GraphicsView/>
             </View>
         </View>
     );
@@ -77,7 +78,7 @@ const styles = StyleSheet.create({
     },
     text1_Header:{
         textAlign: 'center',
-        fontSize: 18,
+        fontSize: 27,
     },
     low:{
         color: 'green',
@@ -113,12 +114,12 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(255, 255, 255, 0.5)'
     },
     container_graphic:{
-        height: 200,
+        height: 280,
         width: 380,
         borderWidth: 2,
         borderColor: '#000000',
         borderRadius: 20,
         backgroundColor: 'rgba(255, 255, 255, 0.5)',
-        marginLeft: 15,
+        marginLeft: 32,
     },
 })
