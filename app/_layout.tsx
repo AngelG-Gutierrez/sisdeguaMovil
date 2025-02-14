@@ -34,10 +34,16 @@ export default function RootLayout() {
           drawerIcon:({color})=><IconSymbol size={28} name="house.fill" color={color}/>
         }}
         />
-        <Drawer.Screen name="(bGraphics)/index" 
+        <Drawer.Screen name="(bGraphicsScreen)/index" 
         options={{ 
           title: "Histórico del día",
-          drawerIcon:({color})=><IconSymbol size={28} name="circle" color={color}/> }} />
+          drawerIcon:({color})=><IconSymbol size={28} name="chart.bar.fill" color={color}/> }} 
+        />
+        <Drawer.Screen name="(cAboutScreen)/index" 
+        options={{ 
+          title: "Acerca de",
+          drawerIcon:({color})=><IconSymbol size={28} name="info.circle.fill" color={color}/> }} 
+        />
       </Drawer>
     </GestureHandlerRootView>
   );
