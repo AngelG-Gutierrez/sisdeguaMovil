@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
+import { ProbabilityInfo } from "../probability/probabilityInfo";
 
 export function HomeView(){
 
@@ -38,8 +39,7 @@ export function HomeView(){
             </View>
 
             <View style={styles.container_Info}>
-                <View style={styles.box1_Container}></View>
-                <View style={styles.box1_Container}></View>
+                <ProbabilityInfo/>
             </View>
             <View style={styles.container_graphic}>
 
