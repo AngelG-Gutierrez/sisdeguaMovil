@@ -29,12 +29,12 @@ export default function RootLayout() {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <Drawer>
         <Drawer.Screen 
-        name="(homeScreen)" 
+        name="(ahomeScreen)" 
         options={{ title: "Inicio",
           drawerIcon:({color})=><IconSymbol size={28} name="house.fill" color={color}/>
         }}
         />
-        <Drawer.Screen name="(graphics)" 
+        <Drawer.Screen name="(bgraphics)" 
         options={{ 
           title: "Gráfica",
           drawerIcon:({color})=><IconSymbol size={28} name="person.fill" color={color}/> }} />

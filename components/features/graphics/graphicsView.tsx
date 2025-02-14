@@ -36,7 +36,6 @@ export function GraphicsView() {
     );
 }
 
-// Definición de estilos
 const styles = StyleSheet.create({
     container: {
         flex: 1,

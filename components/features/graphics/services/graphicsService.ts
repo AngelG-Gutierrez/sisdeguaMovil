@@ -10,11 +10,10 @@ export class GraphicsService {
     async getFormattedData() {
         const sensorData = await this.graphicsData.getSensorData();
 
-        // Transformar los datos a formato para la gráfica
         return sensorData.map(data => ({
-            date: data.date.toLocaleTimeString(),  // Convertir fecha a string
-            waterLevel: data.waterLevel,  // Nivel de agua
-            rainLevel: data.rainLevel,    // Nivel de lluvia
+            date: data.date.toLocaleTimeString(), 
+            waterLevel: data.waterLevel, 
+            rainLevel: data.rainLevel,   
         }));
     }
 }
