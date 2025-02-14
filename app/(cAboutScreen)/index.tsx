@@ -1,7 +1,6 @@
-import { GraphicsView } from "@/components/features/graphics/graphicsView";
-
+import { AboutView } from "@/components/features/about/aboutView";
 export default function GraphicsScreen(){
     return(
-        <GraphicsView/>
+        <AboutView/>
     );
 }
