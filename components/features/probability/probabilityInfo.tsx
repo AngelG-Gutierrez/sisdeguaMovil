@@ -32,7 +32,7 @@ export function ProbabilityInfo(){
             <View style = {styles.box1_Container}>
                 <View style={styles.iconPorcent}>
                 <IconSymbol 
-                        name="water.waves"
+                        name="water.waves.and.arrow.up"
                         size={70} 
                         color="blue"
                     />
