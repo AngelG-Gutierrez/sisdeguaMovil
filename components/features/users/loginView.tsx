@@ -28,11 +28,6 @@ export function LoginView(){
                     </TouchableOpacity>
                 </View>
             </View>
-            <View style={styles.box3}>
-                <TouchableOpacity>
-                    <Text style={styles.text}>¿Olvidaste tu contraseña?</Text>
-                </TouchableOpacity>
-            </View>
             <View style={styles.box4}>
                 <TouchableOpacity style={styles.btn_newUser}>
                     <Text style={styles.text2}>Registrarse</Text>
