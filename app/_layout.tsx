@@ -5,6 +5,7 @@ import { useColorScheme } from '@/hooks/useColorScheme';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import {Drawer} from 'expo-router/drawer';
 import { IconSymbol } from '@/components/ui/IconSymbol';
+import Login from './(aLogin)';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -27,7 +28,8 @@ export default function RootLayout() {
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <Drawer>
+      <Login></Login>
+      {/*<Drawer>
         <Drawer.Screen 
         name="(aHomeScreen)/index"
         options={{ title: "Inicio",
@@ -44,7 +46,7 @@ export default function RootLayout() {
           title: "Acerca de",
           drawerIcon:({color})=><IconSymbol size={28} name="info.circle.fill" color={color}/> }} 
         />
-      </Drawer>
+      </Drawer>*/}
     </GestureHandlerRootView>
   );
 }
