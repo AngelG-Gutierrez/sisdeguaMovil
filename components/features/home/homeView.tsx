@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(255, 255, 255, 0.5)'
     },
     container_graphic:{
-        height: 280,
+        height: 300,
         width: 380,
         borderWidth: 2,
         borderColor: '#000000',
