@@ -6,6 +6,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import {Drawer} from 'expo-router/drawer';
 import { IconSymbol } from '@/components/ui/IconSymbol';
 import Login from './(aLogin)';
+import { SignUpView } from '@/components/features/users/signUpView';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -28,7 +29,7 @@ export default function RootLayout() {
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <Login></Login>
+      <SignUpView></SignUpView>
       {/*<Drawer>
         <Drawer.Screen 
         name="(aHomeScreen)/index"
