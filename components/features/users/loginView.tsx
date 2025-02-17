@@ -1,10 +1,28 @@
-import React from "react";
-import { View, Text, StyleSheet, TextInput, TouchableOpacity } from "react-native";
+import React, { useState } from "react";
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert } from "react-native";
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
-import { IconSymbol } from "@/components/ui/IconSymbol";
 import Feather from '@expo/vector-icons/Feather';
+import { DataSource } from "./dataSource";
+import { User } from "./user";
 
 export function LoginView(){
+
+    const dataSource = new DataSource();
+    const[user,setUser] = useState("");
+    const[password,setPassword] = useState("")
+    const logIn = async (user:User) =>{
+        if(!user.email.trim() || !user.password.trim()){
+            Alert.alert("Error", "campos vacios")
+        }
+        const logIn = await dataSource.loginUser(user.email,user.password);
+
+        if (logIn) {
+            console.log("Inicio de sesión exitoso", logIn);
+        } else {
+            Alert.alert("Error", "Credenciales incorrectas");
+        }
+    }
+
     return(
         <View style={styles.body}>
             <View style={styles.box1}>
@@ -14,16 +32,21 @@ export function LoginView(){
             <View style={styles.box2}>
                 <View style={styles.box2_2}>
                     <TextInput
-                        placeholder="Usuario"
+                        placeholder="Email"
                         style={styles.textInput1}
+                        onChangeText={setUser}
                     />
                     <TextInput
+                        secureTextEntry={true}
                         placeholder="Contraseña"
                         style={styles.textInput2}
+                        onChangeText={setPassword}
                     />
                 </View>
                 <View style={styles.box2_3}>
-                    <TouchableOpacity style={styles.check}>
+                    <TouchableOpacity style={styles.check}
+                    onPress={()=>logIn}
+                    >
                         <Feather name="arrow-right" size={30} color="black" />
                     </TouchableOpacity>
                 </View>

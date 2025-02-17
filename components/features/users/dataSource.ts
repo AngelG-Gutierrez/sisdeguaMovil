@@ -1,12 +1,15 @@
-import bcrypt from "bcryptjs";
+import bcrypt from 'react-native-bcrypt';
 import { supabase } from "@/lib/supabase";
 import { User } from "./user";
-
 export class DataSource{
     constructor(){}
 
     async addUser(user: { email: string; name: string; lastname: string; password: string }): Promise<User | null> {
-        const hashedPassword = await bcrypt.hash(user.password, 10);
+        const hashedPassword = await bcrypt.hash(user.password,10,(error,hashedPassword)=>{
+            if(error){
+                console.error("Error, no se puede encriptar")
+            }
+        });
         const { data, error } = await supabase
             .from("users")
             .insert({
@@ -37,7 +40,11 @@ export class DataSource{
             return null;
         }
     
-        const validPassword = await bcrypt.compare(password, user.password);
+        const validPassword = await bcrypt.compare(password, user.password, (error,comparePassword)=>{
+            if(error){
+                console.log("Error al comparar")
+            }
+        });
     
         if (!validPassword) {
             console.error("Contraseña incorrecta.");
