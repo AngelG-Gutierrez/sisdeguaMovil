@@ -1,7 +1,8 @@
 import React from "react";
-import { View, Text, StyleSheet, TextInput } from "react-native";
+import { View, Text, StyleSheet, TextInput, TouchableOpacity } from "react-native";
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import { IconSymbol } from "@/components/ui/IconSymbol";
+import Feather from '@expo/vector-icons/Feather';
 
 export function LoginView(){
     return(
@@ -13,20 +14,30 @@ export function LoginView(){
             <View style={styles.box2}>
                 <View style={styles.box2_2}>
                     <TextInput
-                        placeholder="   Usuario"
+                        placeholder="Usuario"
                         style={styles.textInput1}
                     />
                     <TextInput
-                        placeholder="   Contraseña"
+                        placeholder="Contraseña"
                         style={styles.textInput2}
                     />
                 </View>
                 <View style={styles.box2_3}>
-
+                    <TouchableOpacity style={styles.check}>
+                        <Feather name="arrow-right" size={30} color="black" />
+                    </TouchableOpacity>
                 </View>
             </View>
-            <View></View>
-            <View></View>
+            <View style={styles.box3}>
+                <TouchableOpacity>
+                    <Text style={styles.text}>¿Olvidaste tu contraseña?</Text>
+                </TouchableOpacity>
+            </View>
+            <View style={styles.box4}>
+                <TouchableOpacity style={styles.btn_newUser}>
+                    <Text style={styles.text2}>Registrarse</Text>
+                </TouchableOpacity>
+            </View>
         </View>
     );
 }
@@ -54,24 +65,71 @@ const styles = StyleSheet.create({
         width: '100%',
         height: 'auto',
         flexDirection: 'row',
+        alignItems: 'center',
     },
     textInput1:{
-        width: '75%',
+        width: 'auto',
         backgroundColor: '#ffffff',
         borderTopRightRadius: 40,
         height: 50,
-        padding: 10,
         borderWidth: 1,
+        padding: 15,
     },
     textInput2:{
-        width: '75%',
+        width: 'auto',
         backgroundColor: '#ffffff',
         borderBottomRightRadius: 40,
         height: 50,
-        padding: 10,
         borderWidth: 1,
+        padding: 15,
     },
     box2_2:{
-        width: '50%',
+        width: '75%',
+        padding: 0,
+    },
+    box2_3:{
+        width: 'auto',
+        padding: 0,
+        marginLeft: 20,
+    },
+    check:{
+        height: 50,
+        width: 50,
+        borderRadius: 25,
+        borderWidth: 1,
+        backgroundColor: '#674ea7',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    box3:{
+        marginTop: 15,
+        width: '100%',
+        height: 'auto',
+        alignItems: 'flex-end',
+        paddingRight: '10%',
+    },
+    text:{
+        color: '#666666',
+    },
+    box4:{
+        marginTop: 15,
+        width: '100%',
+        height: 'auto',
+        alignItems: 'flex-start',
+    },
+    btn_newUser:{
+        width: '30%',
+        backgroundColor: '#f8c471',
+        borderTopRightRadius: 40,
+        borderBottomRightRadius: 40,
+        height: 50,
+        borderWidth: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    text2:{
+        fontSize: 16,
+        fontWeight: 'bold',
+        color: '#c0392b'
     },
 });
