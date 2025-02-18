@@ -4,7 +4,8 @@ import { LineChart } from "react-native-chart-kit";
 import { GraphicsService } from "./services/graphicsService";
 
 export function GraphicsView() {
-    const [chartData, setChartData] = useState<{ date: string; waterLevel: number; rainLevel: number }[]>([]);    const graphicsService = new GraphicsService();
+    const [chartData, setChartData] = useState<{ date: string; waterLevel: number; rainLevel: number }[]>([]);    
+    const graphicsService = new GraphicsService();
 
     useEffect(() => {
         const fetchData = async () => {
