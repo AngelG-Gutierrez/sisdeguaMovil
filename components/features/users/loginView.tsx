@@ -3,27 +3,36 @@ import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert } from "reac
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import Feather from '@expo/vector-icons/Feather';
 import { DataSource } from "./dataSource";
-import { User } from "./user";
+import { useRouter } from "expo-router"
 
-export function LoginView(){
-
+export function LoginView() {
+    const router = useRouter();
     const dataSource = new DataSource();
-    const[user,setUser] = useState("");
-    const[password,setPassword] = useState("")
-    const logIn = async (user:User) =>{
-        if(!user.email.trim() || !user.password.trim()){
-            Alert.alert("Error", "campos vacios")
-        }
-        const logIn = await dataSource.loginUser(user.email,user.password);
+    const [user, setUser] = useState("");
+    const [password, setPassword] = useState("");
 
-        if (logIn) {
-            console.log("Inicio de sesión exitoso", logIn);
+    const logIn = async () => {
+        const email = user.trim();
+        const pass = password.trim();
+    
+        if (!email || !pass) {
+            Alert.alert("Error", "Campos vacíos");
+            return;
+        }
+    
+        console.log("Intentando iniciar sesión con:", email);
+        const logInResponse = await dataSource.loginUser(email, pass);
+    
+        if (logInResponse) {
+            console.log("Inicio de sesión exitoso", logInResponse);
+            Alert.alert("Éxito", "Inicio de sesión exitoso");
+            router.push("/(bHomeScreen)");
         } else {
             Alert.alert("Error", "Credenciales incorrectas");
         }
-    }
+    };
 
-    return(
+    return (
         <View style={styles.body}>
             <View style={styles.box1}>
                 <FontAwesome5 name="users" size={45} color="black" />
@@ -31,28 +40,35 @@ export function LoginView(){
             </View>
             <View style={styles.box2}>
                 <View style={styles.box2_2}>
-                    <TextInput
-                        placeholder="Email"
-                        style={styles.textInput1}
-                        onChangeText={setUser}
-                    />
+                <TextInput
+                    placeholder="Email"
+                    style={styles.textInput1}
+                    onChangeText={setUser}
+                    value={user}
+                    autoCapitalize="none"
+                    keyboardType="email-address"
+                />
                     <TextInput
                         secureTextEntry={true}
                         placeholder="Contraseña"
                         style={styles.textInput2}
                         onChangeText={setPassword}
+                        value={password}
                     />
                 </View>
                 <View style={styles.box2_3}>
-                    <TouchableOpacity style={styles.check}
-                    onPress={()=>logIn}
+                    <TouchableOpacity
+                        style={styles.check}
+                        onPress={() => logIn()}
                     >
                         <Feather name="arrow-right" size={30} color="black" />
                     </TouchableOpacity>
                 </View>
             </View>
             <View style={styles.box4}>
-                <TouchableOpacity style={styles.btn_newUser}>
+                <TouchableOpacity style={styles.btn_newUser}
+                onPress={()=>router.push("/(eRegister)")}
+                >
                     <Text style={styles.text2}>Registrarse</Text>
                 </TouchableOpacity>
             </View>
@@ -61,31 +77,31 @@ export function LoginView(){
 }
 
 const styles = StyleSheet.create({
-    body:{
+    body: {
         flex: 1,
         backgroundColor: '#9fc5f8',
         justifyContent: 'center',
         alignItems: 'center',
     },
-    box1:{
+    box1: {
         width: '100%',
         height: 'auto',
         justifyContent: 'center',
         alignItems: 'center',
         gap: 15,
     },
-    title:{
+    title: {
         fontSize: 30,
         fontWeight: 'bold',
     },
-    box2:{
+    box2: {
         marginTop: 40,
         width: '100%',
         height: 'auto',
         flexDirection: 'row',
         alignItems: 'center',
     },
-    textInput1:{
+    textInput1: {
         width: 'auto',
         backgroundColor: '#ffffff',
         borderTopRightRadius: 40,
@@ -93,7 +109,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         padding: 15,
     },
-    textInput2:{
+    textInput2: {
         width: 'auto',
         backgroundColor: '#ffffff',
         borderBottomRightRadius: 40,
@@ -101,16 +117,16 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         padding: 15,
     },
-    box2_2:{
+    box2_2: {
         width: '75%',
         padding: 0,
     },
-    box2_3:{
+    box2_3: {
         width: 'auto',
         padding: 0,
         marginLeft: 20,
     },
-    check:{
+    check: {
         height: 50,
         width: 50,
         borderRadius: 25,
@@ -119,23 +135,13 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    box3:{
-        marginTop: 15,
-        width: '100%',
-        height: 'auto',
-        alignItems: 'flex-end',
-        paddingRight: '10%',
-    },
-    text:{
-        color: '#666666',
-    },
-    box4:{
+    box4: {
         marginTop: 15,
         width: '100%',
         height: 'auto',
         alignItems: 'flex-start',
     },
-    btn_newUser:{
+    btn_newUser: {
         width: '30%',
         backgroundColor: '#f8c471',
         borderTopRightRadius: 40,
@@ -145,7 +151,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    text2:{
+    text2: {
         fontSize: 16,
         fontWeight: 'bold',
         color: '#c0392b'
