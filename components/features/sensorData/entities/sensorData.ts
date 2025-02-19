@@ -1,13 +1,13 @@
 export class SensorData{
-    id: string;
+    id: number;
     waterLevel: number;
     rainLevel: number;
     rainIntensity: string;
     date: Date;
 
 
-    constructor(id:string,waterLevel:number, rainLevel:number ,rainIntensity:string, date:Date){
-        this.id = id;
+    constructor(waterLevel:number, rainLevel:number ,rainIntensity:string, date:Date){
+        this.id = 0;
         this.waterLevel = waterLevel;
         this.rainLevel = rainLevel;
         this.rainIntensity = rainIntensity;
