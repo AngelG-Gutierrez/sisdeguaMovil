@@ -2,7 +2,7 @@ import { IconSymbol } from "@/components/ui/IconSymbol";
 import { useEffect, useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { ProbabilityService } from "./services/probabilityService";
-
+import LottieView from 'lottie-react-native';
 
 export function ProbabilityInfo(){
 
@@ -31,24 +31,32 @@ export function ProbabilityInfo(){
         <View style={styles.cards}>
             <View style = {styles.box1_Container}>
                 <View style={styles.iconPorcent}>
-                <IconSymbol 
-                        name="water.waves.and.arrow.up"
-                        size={70} 
-                        color="blue"
-                    />
-                    <Text style={styles.rainLevel}>{averageWaterLevel}%</Text>
+                    <View>
+                        <LottieView
+                            source={require('../../../assets/lotties/water.json')}
+                            loop
+                            autoPlay
+                            style={styles.icon}
+                        />
+                    </View>
+                    <View>
+                        <Text style={styles.rainLevel}>{averageWaterLevel}%</Text>
+                    </View>
                 </View>
-                    <Text style={styles.text1}>Nivel de agua promedio</Text>
-                    <Text style={styles.text2}>60%</Text>
+                <Text style={styles.text1}>Nivel de agua promedio</Text>
+                <Text style={styles.text2}>60%</Text>
             </View>
 
             <View style = {styles.box1_Container}>
                 <View style={styles.iconPorcent}>
-                <IconSymbol 
-                        name="drop.fill"
-                        size={70} 
-                        color="blue"
-                    />
+                    <View>
+                        <LottieView
+                            source={require('../../../assets/lotties/rain.json')}
+                            loop
+                            autoPlay
+                            style={styles.icon2}
+                        />
+                    </View>
                     <Text style={styles.rainLevel}>{averageRainLevel}%</Text>
                 </View>
                     <Text style={styles.text1}>Nivel de precipitación promedio</Text>
@@ -60,47 +68,55 @@ export function ProbabilityInfo(){
 }
 
 const styles = StyleSheet.create({
-    container:{
-        width: "40%",
-        backgroundColor: "#e7f0fd"
-    },
-
     iconPorcent:{
         flexDirection: "row",
-        marginTop: 15
+        justifyContent: 'center',
+        alignItems: 'center',
+        gap: 5,
+        marginLeft: -10,
     },
 
     box1_Container:{
-        height: 250,
-        width: 180,
-        borderWidth: 2,
+        height: 220,
+        width: '48%',
+        borderWidth: 1,
         borderColor: '#000000',
         borderRadius: 20,
-        backgroundColor: 'rgba(255, 255, 255, 0.5)'
-        
+        backgroundColor: 'rgba(255, 255, 255, 0.5)',
+    },
+
+    icon:{
+        height: 85,
+        width: 85,
+    },
+
+    icon2:{
+        padding: 0,
+        margin: 0,
+        height: 90,
+        width: 90,
+        marginBottom: -10,
+        marginTop: 5,
     },
 
     rainLevel:{
-        fontSize: 40,
-        marginLeft: 10,
-        marginTop: 10
+        fontSize: 25,
     },
 
     text1:{
-        fontSize: 24,
+        fontSize: 16,
         textAlign: "center",
-        marginTop: 5
+        marginTop: 5,
     },
 
     text2:{
-        fontSize: 30,
+        fontSize: 25,
         textAlign: "center",
-        marginTop: 15
+        marginTop: 5,
     },
 
     cards:{
         flexDirection:"row",
-        gap: 10
-        
+        gap: 15,
     }
 })
