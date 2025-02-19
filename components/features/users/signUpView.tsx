@@ -23,7 +23,7 @@ export function SignUpView() {
 
         if (newUser) {
             Alert.alert("Éxito", "Usuario registrado correctamente.");
-            router.push("/(aLogin)");
+            router.push("/about/(aLogin)");
         } else {
             Alert.alert("Error", "No se pudo registrar el usuario.");
         }
@@ -33,7 +33,7 @@ export function SignUpView() {
         <View style={styles.body}>
             <View style={styles.box4}>
                 <Text style={styles.text}>¿Ya estás registrado?</Text>
-                <TouchableOpacity style={styles.btn_Login} onPress={() => router.push("/(aLogin)")}>
+                <TouchableOpacity style={styles.btn_Login} onPress={() => router.push("/about/(aLogin)")}>
                     <Text style={styles.text2}>Iniciar Sesión</Text>
                 </TouchableOpacity>
             </View>

@@ -4,12 +4,14 @@ import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import Feather from '@expo/vector-icons/Feather';
 import { DataSource } from "./dataSource";
 import { useRouter } from "expo-router"
+import { useAuth } from "@/app/context/AuthContext";
 
 export function LoginView() {
     const router = useRouter();
     const dataSource = new DataSource();
     const [user, setUser] = useState("");
     const [password, setPassword] = useState("");
+    const {login} = useAuth();
 
     const logIn = async () => {
         const email = user.trim();
@@ -21,12 +23,15 @@ export function LoginView() {
         }
     
         console.log("Intentando iniciar sesión con:", email);
-        const logInResponse = await dataSource.loginUser(email, pass);
+        const logInResponse = await dataSource.loginUser(email, password);
     
         if (logInResponse) {
+            login();
             console.log("Inicio de sesión exitoso", logInResponse);
             Alert.alert("Éxito", "Inicio de sesión exitoso");
-            router.push("/(bHomeScreen)");
+            router.replace("/drawer/(bHomeScreen)");
+
+
         } else {
             Alert.alert("Error", "Credenciales incorrectas");
         }
@@ -59,7 +64,7 @@ export function LoginView() {
                 <View style={styles.box2_3}>
                     <TouchableOpacity
                         style={styles.check}
-                        onPress={() => logIn()}
+                        onPress={logIn}
                     >
                         <Feather name="arrow-right" size={30} color="black" />
                     </TouchableOpacity>
@@ -67,7 +72,7 @@ export function LoginView() {
             </View>
             <View style={styles.box4}>
                 <TouchableOpacity style={styles.btn_newUser}
-                onPress={()=>router.push("/(eRegister)")}
+                onPress={() => router.push("/about/(eRegister)")}
                 >
                     <Text style={styles.text2}>Registrarse</Text>
                 </TouchableOpacity>
