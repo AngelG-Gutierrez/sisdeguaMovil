@@ -1,28 +1,18 @@
-import { SensorData } from "../entities/sensorData";
+import { SensorDataSource } from "../dataSource/sensorDataSource";
 
 export class SensorDataService{
-    sensorData:SensorData[];
+    datasource: SensorDataSource;
 
     constructor(){
-        this.sensorData = []
-        this.add(new SensorData(90,70,'Alto',new Date()))
-        this.add(new SensorData(80,60,'Alto',new Date()))
-        this.add(new SensorData(40,20,'Medio',new Date()))
+        this.datasource = new SensorDataSource;
     }
 
     list(){
-        return this.sensorData;
+        return this.datasource.list();
     }
 
-    add(sensorData:SensorData){
-        sensorData.id = this.sensorData.length + 1;
-        this.sensorData.push(sensorData);
-        return sensorData;
+    get(id:string){
+        return this.datasource.getById(id);
     }
 
-    get(id:number){
-        return this.sensorData.find(
-            (sensorData)=>sensorData.id == id
-        );
-    }
 }
