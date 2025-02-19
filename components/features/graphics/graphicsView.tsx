@@ -53,8 +53,10 @@ export function GraphicsView() {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        padding: 20,
+        width: '80%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 15,
     },
     title: {
         fontSize: 18,

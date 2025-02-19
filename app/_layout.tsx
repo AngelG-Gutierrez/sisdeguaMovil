@@ -8,6 +8,9 @@ import { IconSymbol } from '@/components/ui/IconSymbol';
 import Login from './(aLogin)';
 import { SignUpView } from '@/components/features/users/signUpView';
 import { Slot, usePathname } from 'expo-router';
+import HomeScreen from './(bHomeScreen)';
+import { LoginView } from '@/components/features/users/loginView';
+import { HomeView } from '@/components/features/home/homeView';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -66,9 +69,6 @@ export default function RootLayout() {
             }} 
           />
         </Drawer>
-      {/*}) : (
-        <Slot />
-      )}*/}
     </GestureHandlerRootView>
   );
 }
