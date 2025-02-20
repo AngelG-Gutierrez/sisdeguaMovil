@@ -1,4 +1,4 @@
-import { ConfigurationView } from "@/components/features/configuration/configurationView";
+import { ConfigurationView } from "@/components/features/profile/configurationView";
 
 export default function ConfigurationScreen(){
     return(

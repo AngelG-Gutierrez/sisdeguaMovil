@@ -5,9 +5,9 @@ import React, { useEffect } from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Slot } from "expo-router";
 import { AuthProvider, useAuth } from "../app/context/AuthContext";
-import BHomeScreen from "./drawer/(bHomeScreen)";
-import CGraphicsScreen from "./drawer/(cGraphicsScreen)";
-import DAboutScreen from "./drawer/(dAboutScreen)";
+import BHomeScreen from "./drawer/(bHome)";
+import CGraphicsScreen from "./drawer/(cGraphics)";
+import DAboutScreen from "./drawer/(dAbout)";
 import EConfiguration from "./drawer/(eConfiguration)"
 import Entypo from "@expo/vector-icons/build/Entypo";
 import Foundation from '@expo/vector-icons/Foundation';
@@ -65,7 +65,7 @@ function AuthenticatedScreens() {
       }}
     >
       <Drawer.Screen 
-        name="bHomeScreen"
+        name="bHome"
         component={BHomeScreen}
         options={{
            title: "Principal",
@@ -75,7 +75,7 @@ function AuthenticatedScreens() {
         }}
       />
       <Drawer.Screen 
-        name="cGraphicsScreen"
+        name="cGraphics"
         component={CGraphicsScreen}
         options={{
            title: "Histórico del día",
@@ -97,7 +97,7 @@ function AuthenticatedScreens() {
       />
 
       <Drawer.Screen 
-        name="dAboutScreen"
+        name="dAbout"
         component={DAboutScreen}
         options={{
           title: "Acerca de",
