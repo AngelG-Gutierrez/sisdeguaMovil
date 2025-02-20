@@ -8,6 +8,9 @@ import { AuthProvider, useAuth } from "../app/context/AuthContext";
 import BHomeScreen from "./drawer/(bHomeScreen)";
 import CGraphicsScreen from "./drawer/(cGraphicsScreen)";
 import DAboutScreen from "./drawer/(dAboutScreen)";
+import Entypo from "@expo/vector-icons/build/Entypo";
+import Foundation from '@expo/vector-icons/Foundation';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -47,21 +50,47 @@ function RootLayout() {
 
 function AuthenticatedScreens() {
   return (
-    <Drawer.Navigator>
+    <Drawer.Navigator
+      screenOptions={{
+        drawerStyle: {
+          backgroundColor: "rgba(255, 255, 255, 0.9)",
+        },
+        drawerLabelStyle: {
+          color: "#000",
+        },
+        drawerActiveTintColor: "#2196f3",
+        drawerInactiveTintColor: "#444",
+      }}
+    >
       <Drawer.Screen 
         name="bHomeScreen"
         component={BHomeScreen}
-        options={{ title: "Inicio" }}
+        options={{
+           title: "Principal",
+           drawerIcon: ({ color, size }) => (
+            <Entypo name="home" size={size} color={color} />
+          ),
+        }}
       />
       <Drawer.Screen 
         name="cGraphicsScreen"
         component={CGraphicsScreen}
-        options={{ title: "Histórico del día" }} 
+        options={{
+           title: "Histórico del día",
+           drawerIcon: ({ color, size }) => (
+            <Foundation name="graph-bar" size={size} color={color} />
+           ),
+        }} 
       />
       <Drawer.Screen 
         name="dAboutScreen"
         component={DAboutScreen}
-        options={{ title: "Acerca de" }} 
+        options={{
+          title: "Acerca de",
+          drawerIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="information" size={size} color={color} />
+           ),
+        }} 
       />
     </Drawer.Navigator>
   );

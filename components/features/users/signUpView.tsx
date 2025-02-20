@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert } from "react-native";
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert, StatusBar } from "react-native";
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { useRouter } from "expo-router"; 
 import { DataSource } from "./dataSource";
+import { LinearGradient } from "expo-linear-gradient";
 
 export function SignUpView() {
     const router = useRouter();
@@ -30,62 +31,70 @@ export function SignUpView() {
     };
 
     return (
-        <View style={styles.body}>
-            <View style={styles.box4}>
-                <Text style={styles.text}>¿Ya estás registrado?</Text>
-                <TouchableOpacity style={styles.btn_Login} onPress={() => router.push("/about/(aLogin)")}>
-                    <Text style={styles.text2}>Iniciar Sesión</Text>
-                </TouchableOpacity>
-            </View>
-            <View style={styles.box1}>
-                <FontAwesome5 name="users" size={45} color="black" />
-                <Text style={styles.title}>Regístrate</Text>
-            </View>
-            <View style={styles.box2}>
-                <View style={styles.box2_2}>
-                    <TextInput
-                        placeholder="Nombre"
-                        style={styles.textInput1}
-                        value={name}
-                        onChangeText={setName}
-                    />
-                    <TextInput
-                        placeholder="Apellidos"
-                        style={styles.textInput}
-                        value={lastName}
-                        onChangeText={setLastName}
-                    />
-                    <TextInput
-                        placeholder="Correo"
-                        style={styles.textInput}
-                        value={email}
-                        onChangeText={setEmail}
-                        keyboardType="email-address"
-                        autoCapitalize="none"
-                    />
-                    <TextInput
-                        placeholder="Contraseña"
-                        style={styles.textInput2}
-                        secureTextEntry={true}
-                        value={password}
-                        onChangeText={setPassword}
-                    />
-                </View>
-                <View style={styles.box2_3}>
-                    <TouchableOpacity style={styles.check} onPress={handleSignUp}>
-                        <Text>Registrarse  </Text>
-                        <AntDesign name="checkcircle" size={25} color="black" />
+        <View>
+            <StatusBar backgroundColor="white" barStyle="dark-content"/>
+            <LinearGradient 
+                colors={["#82c1f3", "#59abed", "#0057b7"]}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+                style={styles.body}
+            >
+                <View style={styles.box4}>
+                    <Text style={styles.text}>¿Ya estás registrado?</Text>
+                    <TouchableOpacity style={styles.btn_Login} onPress={() => router.push("/about/(aLogin)")}>
+                        <Text style={styles.text2}>Iniciar Sesión</Text>
                     </TouchableOpacity>
                 </View>
-            </View>
+                <View style={styles.box1}>
+                    <FontAwesome5 name="users" size={45} color="black" />
+                    <Text style={styles.title}>Regístrate</Text>
+                </View>
+                <View style={styles.box2}>
+                    <View style={styles.box2_2}>
+                        <TextInput
+                            placeholder="Nombre"
+                            style={styles.textInput1}
+                            value={name}
+                            onChangeText={setName}
+                        />
+                        <TextInput
+                            placeholder="Apellidos"
+                            style={styles.textInput}
+                            value={lastName}
+                            onChangeText={setLastName}
+                        />
+                        <TextInput
+                            placeholder="Correo"
+                            style={styles.textInput}
+                            value={email}
+                            onChangeText={setEmail}
+                            keyboardType="email-address"
+                            autoCapitalize="none"
+                        />
+                        <TextInput
+                            placeholder="Contraseña"
+                            style={styles.textInput2}
+                            secureTextEntry={true}
+                            value={password}
+                            onChangeText={setPassword}
+                        />
+                    </View>
+                    <View style={styles.box2_3}>
+                        <TouchableOpacity style={styles.check} onPress={handleSignUp}>
+                            <Text>Registrarse</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+            </LinearGradient>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
     body: {
-        flex: 1,
         backgroundColor: '#9fc5f8',
+        height: '100%',
+        width: '100%',
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -110,7 +119,7 @@ const styles = StyleSheet.create({
         width: 'auto',
         backgroundColor: '#ffffff',
         height: 50,
-        borderWidth: 1,
+        borderWidth: 0.2,
         padding: 15,
     },
     textInput1: {
@@ -118,7 +127,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#ffffff',
         borderTopRightRadius: 40,
         height: 50,
-        borderWidth: 1,
+        borderWidth: 0.2,
         padding: 15,
     },
     textInput2: {
@@ -126,7 +135,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#ffffff',
         borderBottomRightRadius: 40,
         height: 50,
-        borderWidth: 1,
+        borderWidth: 0.2,
         padding: 15,
     },
     box2_2: {
@@ -144,10 +153,10 @@ const styles = StyleSheet.create({
     check: {
         height: 50,
         width: 'auto',
-        padding: 10,
+        padding: 15,
         flexDirection: 'row',
         borderRadius: 25,
-        borderWidth: 1,
+        borderWidth: 0,
         backgroundColor: '#674ea7',
         justifyContent: 'center',
         alignItems: 'center',
@@ -169,7 +178,7 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 40,
         borderBottomLeftRadius: 40,
         height: 50,
-        borderWidth: 1,
+        borderWidth: 0,
         justifyContent: 'center',
         alignItems: 'center',
     },

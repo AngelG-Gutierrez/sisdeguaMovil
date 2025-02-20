@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { View, Text, StyleSheet, ScrollView, StatusBar } from "react-native";
 import { ProbabilityInfo } from "../probability/probabilityInfo";
 import { GraphicsView } from "../graphics/graphicsView";
 import LottieView from 'lottie-react-native';
@@ -41,6 +41,7 @@ export function HomeView(){
 
     return(
         <View>
+        <StatusBar backgroundColor="white" barStyle="dark-content"/>
         <LinearGradient 
             colors={["#0057b7", "#9fc5f8"]}
             start={{ x: 0, y: 0 }}
