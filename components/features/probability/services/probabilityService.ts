@@ -15,6 +15,7 @@ export class ProbabilityService {
             waterLevel: data.waterLevel, 
             rainLevel: data.rainLevel,
             rainIntensity: data.rainIntensity,  
+            waterProbability:data.waterProbability,
         }));
     }
 }

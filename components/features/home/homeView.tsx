@@ -8,7 +8,8 @@ import { ProbabilityService } from "../probability/services/probabilityService";
 
 export function HomeView(){
 
-    const [level,setLevel] = useState("");
+    const [levelRain,setLevelRain] = useState("");
+    const [waterProbability,setWaterProbability] = useState("");
     const probabilityService = new ProbabilityService();
 
     useEffect(() => {
@@ -16,10 +17,12 @@ export function HomeView(){
             try {
                 const data = await probabilityService.getFormattedData();
                 if (data.length > 0) {
-                    setLevel(data[data.length - 1].rainIntensity);
+                    setLevelRain(data[data.length - 1].rainIntensity);
+                    setWaterProbability(data[data.length - 1].waterProbability);
+                    console.log(waterProbability)
                 }
             } catch (error) {
-                console.error("Error obteniendo los datos de intensidad de lluvia:", error);
+                console.error("Error obteniendo los datos:", error);
             }
         };
 
@@ -27,7 +30,20 @@ export function HomeView(){
     }, []);
 
     const getColorRain = () => {
-        switch (level) {
+        switch (levelRain) {
+            case "Alta":
+                return styles.high;
+            case "Media":
+                return styles.medium;
+            case "Baja":
+                return styles.low;
+            default:
+                return {}; //Sin Lluvia
+        }
+    };
+
+    const getColorWater = ()=>{
+        switch (waterProbability){
             case "Alta":
                 return styles.high;
             case "Media":
@@ -37,7 +53,7 @@ export function HomeView(){
             default:
                 return {};
         }
-    };
+    }
 
     return(
         <View>
@@ -60,9 +76,9 @@ export function HomeView(){
                     </View>
                     <View style={styles.box2_Header}>
                         <Text style={styles.text1_Header}>Probabilidad de Desbordamientos</Text>
-                        <Text style={[getColorRain()]}>{level}</Text>
+                        <Text style={[getColorWater()]}>{waterProbability}</Text>
                         <Text style={styles.text1_Header}>Intensidad de Lluvia</Text>
-                        <Text style={[getColorRain()]}>{level}</Text>
+                        <Text style={[getColorRain()]}>{levelRain}</Text>
                     </View>
                 </View>
                 <View style={styles.container_Info}>
