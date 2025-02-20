@@ -8,9 +8,11 @@ import { AuthProvider, useAuth } from "../app/context/AuthContext";
 import BHomeScreen from "./drawer/(bHomeScreen)";
 import CGraphicsScreen from "./drawer/(cGraphicsScreen)";
 import DAboutScreen from "./drawer/(dAboutScreen)";
+import EConfiguration from "./drawer/(eConfiguration)"
 import Entypo from "@expo/vector-icons/build/Entypo";
 import Foundation from '@expo/vector-icons/Foundation';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -82,6 +84,18 @@ function AuthenticatedScreens() {
            ),
         }} 
       />
+
+      <Drawer.Screen 
+        name="eConfiguration"
+        component={EConfiguration}
+        options={{
+          title: "Configuración",
+          drawerIcon: ({ color, size }) => (
+            <Ionicons name="settings" size={size} color={color} />
+           ),
+        }} 
+      />
+
       <Drawer.Screen 
         name="dAboutScreen"
         component={DAboutScreen}
@@ -92,6 +106,7 @@ function AuthenticatedScreens() {
            ),
         }} 
       />
+
     </Drawer.Navigator>
   );
 }
