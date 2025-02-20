@@ -1,30 +1,43 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
 import { ProbabilityInfo } from "../probability/probabilityInfo";
 import { GraphicsView } from "../graphics/graphicsView";
 import LottieView from 'lottie-react-native';
 import { LinearGradient } from "expo-linear-gradient";
+import { ProbabilityService } from "../probability/services/probabilityService";
 
 export function HomeView(){
 
-    const level = 'red'
+    const [level,setLevel] = useState("");
+    const probabilityService = new ProbabilityService();
 
-    const getLevelColor = () => {
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const data = await probabilityService.getFormattedData();
+                if (data.length > 0) {
+                    setLevel(data[data.length - 1].rainIntensity); // Tomamos el último dato de rainIntensity
+                }
+            } catch (error) {
+                console.error("Error obteniendo los datos de probabilidad:", error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
+    const getColorRain = () => {
         switch (level) {
-            case "red":
+            case "Alto":
                 return styles.high;
-            {/*break;
-            case "red":
+            case "Medio":
                 return styles.medium;
-            break;
-            case "red":
-                return styles.high;
-            break;
+            case "Bajo":
+                return styles.low;
             default:
-                return 0;
-            break;*/}
+                return {};
         }
-    }
+    };
 
     return(
         <View>
@@ -45,11 +58,12 @@ export function HomeView(){
                         />
                     </View>
                     <View style={styles.box2_Header}>
-                        <Text style={styles.text1_Header}>Probabilidad de desbordamientos</Text>
-                        <Text style={[getLevelColor()]}>Alta</Text>
+                        <Text style={styles.text1_Header}>Probabilidad de Desbordamientos</Text>
+                        <Text style={[getColorRain()]}>{level}</Text>
+                        <Text style={styles.text1_Header}>Intensidad de Lluvia</Text>
+                        <Text style={[getColorRain()]}>{level}</Text>
                     </View>
                 </View>
-
                 <View style={styles.container_Info}>
                     <ProbabilityInfo/>
                 </View>
@@ -97,13 +111,14 @@ const styles = StyleSheet.create({
     text1_Header:{
         textAlign: 'center',
         fontSize: 18,
+        fontWeight:"500"
     },
     low:{
-        color: 'green',
+        color: 'rgb(132, 248, 0)',
         textAlign: 'center',
         fontSize: 25,
-        marginTop: 10,
         fontWeight: 'bold',
+        marginBottom:10
     },
     high:{
         color: '#CC0033',

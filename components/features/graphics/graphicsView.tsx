@@ -6,11 +6,11 @@ import { GraphicsService } from "./services/graphicsService";
 export function GraphicsView() {
     const [chartData, setChartData] = useState<{ date: string; waterLevel: number; rainLevel: number }[]>([]);    
     const graphicsService = new GraphicsService();
-
+    
     useEffect(() => {
         const fetchData = async () => {
             const formattedData = await graphicsService.getFormattedData();
-            setChartData(formattedData);
+            setChartData(formattedData.reverse());
         };
 
         fetchData();
@@ -23,27 +23,26 @@ export function GraphicsView() {
                 <LineChart
                     data={{
                         labels: chartData.map(d => d.date),
-                        datasets: [{ data: chartData.map(d => d.waterLevel) }]
+                        datasets: [{ data: chartData.map(d => d.waterLevel)}]
                     }}
                     width={Dimensions.get("window").width - 105}
-                    height={220}
+                    height={310}
                     yAxisLabel=""
                     chartConfig={{
                         backgroundGradientFrom: "#fff",
                         backgroundGradientTo: "#fff",
-                        decimalPlaces: 2,
+                        decimalPlaces: 0,
                         color: (opacity = 1) => `rgba(0, 0, 255, ${opacity})`,
                         labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
                         style: {
                             borderRadius: 16,
                         },
                         propsForDots: {
-                            r: "4",
-                            strokeWidth: "2",
+                            r: "5",
+                            strokeWidth: "1",
                             stroke: "blue",
                         },
                     }}
-                    bezier
                     style={styles.chart}
                 />
             )}

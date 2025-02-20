@@ -1,4 +1,3 @@
-import { IconSymbol } from "@/components/ui/IconSymbol";
 import { useEffect, useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { ProbabilityService } from "./services/probabilityService";
@@ -19,13 +18,12 @@ export function ProbabilityInfo(){
     }, []);
 
     const averageWaterLevel = probabilityData.length > 0 
-        ? probabilityData.reduce((sum, data) => sum + data.waterLevel, 0) / probabilityData.length 
-        : 0;
-
+    ? Math.trunc(probabilityData.reduce((sum, data) => sum + data.waterLevel, 0) / probabilityData.length)
+    : 0;
 
     const averageRainLevel = probabilityData.length > 0 
-        ? probabilityData.reduce((sum, data) => sum + data.rainLevel, 0) / probabilityData.length 
-        : 0;
+    ? Math.trunc(probabilityData.reduce((sum, data) => sum + data.rainLevel, 0) / probabilityData.length)
+    : 0;
 
     return(
         <View style={styles.cards}>
@@ -40,11 +38,11 @@ export function ProbabilityInfo(){
                         />
                     </View>
                     <View>
-                        <Text style={styles.rainLevel}>{averageWaterLevel}%</Text>
+                        <Text style={styles.rainLevel}>{0}%</Text>
                     </View>
                 </View>
                 <Text style={styles.text1}>Nivel de agua promedio</Text>
-                <Text style={styles.text2}>60%</Text>
+                <Text style={styles.text2}>{averageWaterLevel}%</Text>
             </View>
 
             <View style = {styles.box1_Container}>
@@ -57,10 +55,10 @@ export function ProbabilityInfo(){
                             style={styles.icon2}
                         />
                     </View>
-                    <Text style={styles.rainLevel}>{averageRainLevel}%</Text>
+                    <Text style={styles.rainLevel}>{0}%</Text>
                 </View>
                     <Text style={styles.text1}>Nivel de precipitación promedio</Text>
-                    <Text style={styles.text2}>18%</Text>
+                    <Text style={styles.text2}>{averageRainLevel}%</Text>
             </View>
 
         </View>
