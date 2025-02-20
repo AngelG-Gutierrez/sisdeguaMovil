@@ -2,6 +2,11 @@
 
 ![Portada del proyecto](assets/images/logo_sisdegua.jpeg)
 
+# Colaboradores
+   ~ Ángel Antelmo Gutiérrez Gadea
+   ~ Genaro Alfredo Silva Espinoza
+   ~ Alejandro Hernández Hernández
+
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
 ## Get started
