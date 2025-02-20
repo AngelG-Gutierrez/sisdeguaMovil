@@ -3,8 +3,11 @@ import { supabase } from "@/lib/supabase";
 export class DataSource {
     constructor() {}
 
-    async addUser(user: { name:string, lastname:string, email: string; password: string }) {
-        const { data, error } = await supabase.auth.signUp({            
+    /** 
+     * Registra un nuevo usuario con email y contraseña en Supabase Auth
+     */
+    async addUser(user: { email: string; password: string }) {
+        const { data, error } = await supabase.auth.signUp({
             email: user.email,
             password: user.password,
         });
@@ -16,6 +19,9 @@ export class DataSource {
         return data;
     }
 
+    /** 
+     * Inicia sesión con email y contraseña
+     */
     async loginUser(email: string, password: string) {
         const { data, error } = await supabase.auth.signInWithPassword({
             email,
@@ -29,6 +35,9 @@ export class DataSource {
         return data;
     }
 
+    /** 
+     * Cierra la sesión del usuario actual
+     */
     async logoutUser() {
         const { error } = await supabase.auth.signOut();
 
@@ -39,6 +48,9 @@ export class DataSource {
         return true;
     }
 
+    /** 
+     * Obtiene los datos del usuario actualmente autenticado
+     */
     async getCurrentUser() {
         const { data, error } = await supabase.auth.getUser();
 
@@ -49,6 +61,9 @@ export class DataSource {
         return data;
     }
 
+    /** 
+     * Actualiza la contraseña del usuario autenticado
+     */
     async updateUser(newPassword: string) {
         const { data, error } = await supabase.auth.updateUser({
             password: newPassword,
