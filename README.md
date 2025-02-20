@@ -1,4 +1,4 @@
-# Welcome to your Expo app 👋
+# Bienvenido al repositorio del proyecto SISDEGUA 👋
 
 ![Portada del proyecto](assets/images/logo_sisdegua.jpeg)
 
