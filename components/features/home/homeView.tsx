@@ -16,7 +16,7 @@ export function HomeView(){
             try {
                 const data = await probabilityService.getFormattedData();
                 if (data.length > 0) {
-                    setLevel(data[data.length - 1].rainIntensity); // Tomamos el último dato de rainIntensity
+                    setLevel(data[data.length - 1].rainIntensity);
                 }
             } catch (error) {
                 console.error("Error obteniendo los datos de probabilidad:", error);
@@ -28,11 +28,11 @@ export function HomeView(){
 
     const getColorRain = () => {
         switch (level) {
-            case "Alto":
+            case "Alta":
                 return styles.high;
-            case "Medio":
+            case "Media":
                 return styles.medium;
-            case "Bajo":
+            case "Baja":
                 return styles.low;
             default:
                 return {};
