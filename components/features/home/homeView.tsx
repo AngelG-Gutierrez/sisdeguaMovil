@@ -19,7 +19,7 @@ export function HomeView(){
                     setLevel(data[data.length - 1].rainIntensity);
                 }
             } catch (error) {
-                console.error("Error obteniendo los datos de probabilidad:", error);
+                console.error("Error obteniendo los datos de intensidad de lluvia:", error);
             }
         };
 
