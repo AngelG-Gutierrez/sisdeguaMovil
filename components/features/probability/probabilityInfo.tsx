@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     box1_Container:{
         height: 220,
         width: '48%',
-        borderWidth: 1,
+        borderWidth: 0.5,
         borderColor: '#000000',
         borderRadius: 20,
         backgroundColor: 'rgba(255, 255, 255, 0.5)',
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
     },
 
     text2:{
-        fontSize: 25,
+        fontSize: 22,
         textAlign: "center",
         marginTop: 5,
     },

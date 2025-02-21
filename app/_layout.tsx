@@ -13,6 +13,7 @@ import Entypo from "@expo/vector-icons/build/Entypo";
 import Foundation from '@expo/vector-icons/Foundation';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { TouchableOpacity, Text } from "react-native";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -55,7 +56,7 @@ function AuthenticatedScreens() {
     <Drawer.Navigator
       screenOptions={{
         drawerStyle: {
-          backgroundColor: "rgba(255, 255, 255, 0.9)",
+          backgroundColor: "#ffffff",//rgba(255, 255, 255, 0.9) para transparente
         },
         drawerLabelStyle: {
           color: "#000",
@@ -106,6 +107,11 @@ function AuthenticatedScreens() {
            ),
         }} 
       />
+
+      <TouchableOpacity 
+        onPress={handleLogout}>
+          <Text>Cerrar Sesión</Text>
+      </TouchableOpacity>
 
     </Drawer.Navigator>
   );

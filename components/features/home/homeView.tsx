@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, ScrollView, StatusBar } from "react-native";
 import { ProbabilityInfo } from "../probability/probabilityInfo";
-import { GraphicsView } from "../graphics/graphicsView";
+import { GraphicsCurrent } from "../graphics/graphicCurrent";
 import LottieView from 'lottie-react-native';
 import { LinearGradient } from "expo-linear-gradient";
 import { ProbabilityService } from "../probability/services/probabilityService";
@@ -85,7 +85,7 @@ export function HomeView(){
                     <ProbabilityInfo/>
                 </View>
                 <View style={styles.container_graphic}>
-                    <GraphicsView/>
+                    <GraphicsCurrent></GraphicsCurrent>
                 </View>            
             </ScrollView>
         </LinearGradient>
@@ -128,24 +128,26 @@ const styles = StyleSheet.create({
     text1_Header:{
         textAlign: 'center',
         fontSize: 18,
-        fontWeight:"500"
+        color: 'white',
+        marginTop: 15,
     },
     low:{
-        color: 'rgb(132, 248, 0)',
+        color: '#11d023',
         textAlign: 'center',
         fontSize: 25,
         fontWeight: 'bold',
-        marginBottom:10
+        marginBottom:10,
+        marginTop: 10,
     },
     high:{
-        color: '#CC0033',
+        color: '#9e0000',
         textAlign: 'center',
         fontSize: 25,
-        marginTop: 10,
         fontWeight: 'bold',
+        marginBottom:10,
     },
     medium:{
-        color: 'yellow',
+        color: '#d3e90c',
         textAlign: 'center',
         fontSize: 25,
         marginTop: 10,
@@ -165,7 +167,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         height: 'auto',
         width: '90%',
-        borderWidth: 1,
+        borderWidth: 0.5,
         borderColor: '#000000',
         borderRadius: 20,
         backgroundColor: 'rgba(255, 255, 255, 0.5)',

@@ -1,69 +1,90 @@
-import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet, Dimensions } from "react-native";
-import { LineChart } from "react-native-chart-kit";
-import { GraphicsService } from "./services/graphicsService";
+import { View, Text, StyleSheet, StatusBar, ScrollView } from "react-native";
+import { GraphicsCurrent } from "./graphicCurrent";
+import LottieView from 'lottie-react-native';
+import { LinearGradient } from "expo-linear-gradient";
 
 export function GraphicsView() {
-    const [chartData, setChartData] = useState<{ date: string; waterLevel: number; rainLevel: number }[]>([]);    
-    const graphicsService = new GraphicsService();
-    
-    useEffect(() => {
-        const fetchData = async () => {
-            const formattedData = await graphicsService.getFormattedDataReal();
-            setChartData(formattedData.reverse());
-        };
-
-        fetchData();
-    }, []);
-
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Nivel de agua actual</Text>
-            {chartData.length > 0 && (
-                <LineChart
-                    data={{
-                        labels: chartData.map(d => d.date),
-                        datasets: [{ data: chartData.map(d => d.waterLevel)}]
-                    }}
-                    width={Dimensions.get("window").width - 105}
-                    height={310}
-                    yAxisLabel=""
-                    chartConfig={{
-                        backgroundGradientFrom: "#fff",
-                        backgroundGradientTo: "#fff",
-                        decimalPlaces: 0,
-                        color: (opacity = 1) => `rgba(0, 0, 255, ${opacity})`,
-                        labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
-                        style: {
-                            borderRadius: 16,
-                        },
-                        propsForDots: {
-                            r: "5",
-                            strokeWidth: "1",
-                            stroke: "blue",
-                        },
-                    }}
-                    style={styles.chart}
-                />
-            )}
+            <StatusBar backgroundColor="white" barStyle="dark-content"/>
+                <LinearGradient 
+                    colors={["#0057b7", "#9fc5f8"]}
+                    start={{ x: 0, y: 0 }}
+                    end={{ x: 1, y: 1 }}
+                    style={[styles.body, { flex: 1}]}
+                >
+                    <ScrollView style={styles.scroll} contentContainerStyle={{ flexGrow: 1, paddingBottom: 120 }}>
+                        <View style={styles.header}>
+                            <View style={styles.box1}>
+                                <LottieView
+                                    source={require('../../../assets/lotties/water.json')}
+                                    loop
+                                    autoPlay
+                                    style={styles.animation}
+                                />
+                            </View>
+                            <View style={styles.box2}>
+                                <Text style={styles.title}>Histórico del día y actual de los nieveles de agua</Text>
+                            </View>
+                        </View>
+                        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                            <GraphicsCurrent></GraphicsCurrent>
+                            <Text style={styles.text}>Datos recuperados de el nivel actual del agua</Text>
+                            {/*Aqui va a ir la grafica de el historico del dia*/}
+                            <GraphicsCurrent></GraphicsCurrent>
+                            <Text style={styles.text}>Datos recapitulados de los niveles de agua del día</Text>
+                        </View>
+                    </ScrollView>
+            </LinearGradient>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
-    container: {
-        width: '80%',
+    container:{
+        flex: 1,
+    },
+    body:{
+        backgroundColor: '#9fc5f8',
+        height: '100%',
+        width: '100%',
         justifyContent: 'center',
         alignItems: 'center',
-        padding: 15,
     },
-    title: {
-        fontSize: 18,
-        fontWeight: "bold",
-        textAlign: "center",
-        marginBottom: 10,
+    header:{
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '25%',
+        width: '100%',
+        backgroundColor: '#02589c',
+        flexDirection: 'row',
     },
-    chart: {
-        borderRadius: 16,
+    scroll:{
+        width: '100%',
+        height: '100%',
+    },
+    box1:{
+        width: '40%',
+        height: 'auto',
+    },
+    box2:{
+        width: '60%',
+        height: 'auto',
+    },
+    animation:{
+        height: 150,
+        width: 150,
+    },
+    title:{
+        fontSize: 25,
+        fontWeight: 'bold',
+        color: '#ffffff',
+        lineHeight: 35,
+    },
+    text: {
+        color: '#222222',
+        marginBottom: 20,
+        width: '80%',
+        textAlign: 'center',
     },
 });
