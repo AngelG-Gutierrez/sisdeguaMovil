@@ -8,7 +8,7 @@ import { AuthProvider, useAuth } from "../app/context/AuthContext";
 import BHomeScreen from "./drawer/(bHome)";
 import CGraphicsScreen from "./drawer/(cGraphics)";
 import DAboutScreen from "./drawer/(dAbout)";
-import EConfiguration from "./drawer/(eConfiguration)"
+import EProfile from "./drawer/(eProfile)"
 import Entypo from "@expo/vector-icons/build/Entypo";
 import Foundation from '@expo/vector-icons/Foundation';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
@@ -86,10 +86,10 @@ function AuthenticatedScreens() {
       />
 
       <Drawer.Screen 
-        name="eConfiguration"
-        component={EConfiguration}
+        name="eProfile"
+        component={EProfile}
         options={{
-          title: "Configuración",
+          title: "Perfil",
           drawerIcon: ({ color, size }) => (
             <Ionicons name="settings" size={size} color={color} />
            ),
