@@ -25,13 +25,12 @@ export function LoginView() {
         }
     
         console.log("Intentando iniciar sesión con:", email);
-        const logInResponse = await dataSource.loginUser(email, password);
+        const logInResponse = await login(email, password);
     
         if (logInResponse) {
-            login();
-            console.log("Inicio de sesión exitoso", logInResponse);
+            console.log("Inicio de sesión exitoso",);
             Alert.alert("Éxito", "Inicio de sesión exitoso");
-            router.replace("/drawer/(bHomeScreen)");
+            router.replace("/drawer/(bHome)");
 
 
         } else {

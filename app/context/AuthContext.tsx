@@ -1,9 +1,10 @@
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import React, { createContext, useContext, useState, ReactNode, useEffect } from "react";
+import { supabase } from "@/lib/supabase";
 
 interface AuthContextType {
   isAuthenticated: boolean;
-  login: () => void;
-  logout: () => void;
+  login: (email:string, password: string) => Promise<boolean>;
+  logout: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -19,8 +20,32 @@ export const useAuth = () => {
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
 
-  const login = () => setIsAuthenticated(true);
-  const logout = () => setIsAuthenticated(false);
+  useEffect(() => {
+    const checkUser = async () =>{
+      const {data} = await supabase.auth.getUser();
+      setIsAuthenticated(!!data?.user);
+    };
+    checkUser();
+  }, []);
+
+  const login = async (email: string, password: string): Promise<boolean> => {
+    const {data, error} = await supabase.auth.signInWithPassword({ email, password});
+    if (error){
+      console.error("Error al iniciar sesión", error.message);
+      return false;
+    }
+
+    setIsAuthenticated(true);
+    return true;
+  }
+
+  const logout = async () => {
+    await supabase.auth.signOut();
+    setIsAuthenticated(false);
+  }
+  
+  //const login = () => setIsAuthenticated(true);
+  //const logout = () => setIsAuthenticated(false);
 
   return (
     <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
