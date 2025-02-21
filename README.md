@@ -7,6 +7,9 @@
    - Genaro Alfredo Silva Espinoza
    - Alejandro Hernández Hernández
 
+# Credenciales DataSource
+   - No incluidas en este repositorio por seguridad del proyecto.
+
 ## Get started
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).

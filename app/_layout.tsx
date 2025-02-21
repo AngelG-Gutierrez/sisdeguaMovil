@@ -91,8 +91,8 @@ function AuthenticatedScreens() {
         options={{
           title: "Perfil",
           drawerIcon: ({ color, size }) => (
-            <Ionicons name="settings" size={size} color={color} />
-           ),
+            <Ionicons name="person-circle" size={size} color={color} />           
+          ),
         }} 
       />
 
