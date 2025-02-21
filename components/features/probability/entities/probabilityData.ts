@@ -11,4 +11,8 @@ export class ProbabilityData {
     async getSensorData(): Promise<SensorData[]> {
         return this.dataSource.list();
     }
+
+    async getSensorDataReal():Promise<SensorData[]>{
+        return this.dataSource.listReal();
+    }
 }

@@ -9,7 +9,7 @@ export function GraphicsView() {
     
     useEffect(() => {
         const fetchData = async () => {
-            const formattedData = await graphicsService.getFormattedData();
+            const formattedData = await graphicsService.getFormattedDataReal();
             setChartData(formattedData.reverse());
         };
 

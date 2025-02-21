@@ -16,4 +16,14 @@ export class GraphicsService {
             rainLevel: data.rainLevel,   
         }));
     }
+
+    async getFormattedDataReal() {
+        const sensorData = await this.graphicsData.getSensorDataReal();
+
+        return sensorData.map(data => ({
+            date: data.date.toLocaleTimeString(), 
+            waterLevel: data.waterLevel, 
+            rainLevel: data.rainLevel,   
+        }));
+    }
 }

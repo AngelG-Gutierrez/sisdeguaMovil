@@ -6,11 +6,16 @@ import LottieView from 'lottie-react-native';
 export function ProbabilityInfo(){
 
     const [probabilityData, setProbabilityData] = useState<any[]>([]);
+    const [levelRain,setLevelRain] = useState(0);
+    const [levelWater,setlevelWater] = useState(0);
     const probabilityService = new ProbabilityService();
 
     useEffect(() => {
         const fetchData = async () => {
             const formattedData = await probabilityService.getFormattedData();
+            const dataReal = await probabilityService.getFormattedDataReal();
+            setLevelRain(dataReal[0]?.rainLevel)
+            setlevelWater(dataReal[0]?.waterLevel)
             setProbabilityData(formattedData);
         };
 
@@ -38,7 +43,7 @@ export function ProbabilityInfo(){
                         />
                     </View>
                     <View>
-                        <Text style={styles.rainLevel}>{0}%</Text>
+                        <Text style={styles.rainLevel}>{levelWater}%</Text>
                     </View>
                 </View>
                 <Text style={styles.text1}>Nivel de agua promedio</Text>
@@ -55,7 +60,7 @@ export function ProbabilityInfo(){
                             style={styles.icon2}
                         />
                     </View>
-                    <Text style={styles.rainLevel}>{0}%</Text>
+                    <Text style={styles.rainLevel}>{levelRain}%</Text>
                 </View>
                     <Text style={styles.text1}>Nivel de precipitación promedio</Text>
                     <Text style={styles.text2}>{averageRainLevel}%</Text>

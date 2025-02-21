@@ -15,10 +15,10 @@ export function HomeView(){
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const data = await probabilityService.getFormattedData();
-                if (data.length > 0) {
-                    setLevelRain(data[data.length - 1].rainIntensity);
-                    setWaterProbability(data[data.length - 1].waterProbability);
+                const dataReal = await probabilityService.getFormattedDataReal();
+                if (dataReal.length > 0) {
+                    setLevelRain(dataReal[0]?.rainIntensity);
+                    setWaterProbability(dataReal[0]?.waterProbability);
                     console.log(waterProbability)
                 }
             } catch (error) {

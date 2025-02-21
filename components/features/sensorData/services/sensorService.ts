@@ -8,7 +8,11 @@ export class SensorDataService{
     }
 
     list(){
-        return this.datasource.list();
+        return this.datasource.listComplete();
+    }
+
+    listReal(){
+        return this.datasource.listReal();
     }
 
     get(id:string){
