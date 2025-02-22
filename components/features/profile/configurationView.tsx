@@ -44,8 +44,8 @@ export function ConfigurationView(){
                     <Text>Cerrar Sesión</Text>
                 </TouchableOpacity>
                 <View>
-                    <Text>{} {}</Text>
-                    <Text>{}</Text>
+                    <Text>{userName} {userLastName}</Text>
+                    <Text>{userEmail}</Text>
                 </View>
                 <View></View>
                 <View></View>
