@@ -170,6 +170,6 @@ const styles = StyleSheet.create({
         borderWidth: 0.5,
         borderColor: '#000000',
         borderRadius: 20,
-        backgroundColor: 'rgba(255, 255, 255, 0.5)',
+        backgroundColor: 'rgba(255, 255, 255, 0.7)',
     },
 })
