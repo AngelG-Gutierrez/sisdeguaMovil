@@ -70,7 +70,7 @@ export class DataSource {
 
         const { data: profileData, error: profileError } = await supabase
             .from("users")
-            .select("*")
+            .select("name, lastname, email") 
             .eq("id", userId)
             .single();
 

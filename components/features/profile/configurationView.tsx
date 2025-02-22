@@ -2,16 +2,33 @@ import { useAuth } from "@/app/context/AuthContext";
 import { router } from "expo-router";
 import { Text, TouchableOpacity, View, StatusBar, StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import { ProfileService } from "./services/profileService";
+import { useEffect, useState } from "react";
 
 export function ConfigurationView(){
+    const [userName, setUserName] = useState("");
+    const [userLastName, setUserLastName] = useState("");
+    const [userEmail, setUserEmail] = useState("");
 
     const {logout} = useAuth();
+    const userService = new ProfileService();
 
     const handleLogout = async () => {
         await logout();
         router.replace("/about/(aLogin)");
     }
 
+    useEffect(() => {
+        const fetchData = async () => {
+            const userData = await userService.currentUser();
+            if (userData) {
+                setUserName(userData.name);
+                setUserLastName(userData.lastname);
+                setUserEmail(userData.email);
+            }
+        };
+        fetchData();
+    }, []);
     
     return(
         <View>
@@ -27,8 +44,8 @@ export function ConfigurationView(){
                     <Text>Cerrar Sesión</Text>
                 </TouchableOpacity>
                 <View>
-                    <Text>Nombre del usuario</Text>
-                    <Text>Nombre del usuario</Text>
+                    <Text>{} {}</Text>
+                    <Text>{}</Text>
                 </View>
                 <View></View>
                 <View></View>
