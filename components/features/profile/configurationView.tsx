@@ -1,14 +1,9 @@
 import { useAuth } from "@/app/context/AuthContext";
 import { router } from "expo-router";
-import { Text, TouchableOpacity, View, StatusBar, StyleSheet } from "react-native";
+import { Text, TouchableOpacity, View, StatusBar, StyleSheet, ScrollView } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-<<<<<<< Updated upstream
 import { ProfileService } from "./services/profileService";
 import { useEffect, useState } from "react";
-=======
-import Feather from '@expo/vector-icons/Feather';
-import { ScrollView } from "react-native-gesture-handler";
->>>>>>> Stashed changes
 
 export function ConfigurationView(){
     const [userName, setUserName] = useState("");
@@ -44,28 +39,14 @@ export function ConfigurationView(){
                 end={{ x: 1, y: 1 }}
                 style={styles.body}
             >
-<<<<<<< Updated upstream
                 <TouchableOpacity 
                 onPress={handleLogout}>
                     <Text>Cerrar Sesión</Text>
                 </TouchableOpacity>
-                <View>
-                    <Text>{userName} {userLastName}</Text>
-                    <Text>{userEmail}</Text>
-=======
-                <View style={styles.box_btn}>
-                    <TouchableOpacity 
-                    onPress={handleLogout}
-                    style={styles.btn_out}>
-                        <Feather name="log-out" size={17} color="black" />
-                        <Text style={styles.text_btn}> Cerrar Sesión</Text>
-                    </TouchableOpacity>
->>>>>>> Stashed changes
-                </View>
                 <ScrollView>
                     <View style={styles.box_infoUser}>
-                        <Text style={styles.text_name}>Alejandro Hernandez Hernandez</Text>
-                        <Text style={styles.text_email}>alehernandez028h@gmail.com</Text>
+                        <Text style={styles.text_name}>{userName} {userLastName}</Text>
+                        <Text style={styles.text_email}>{userEmail}</Text>
                     </View>
                     <View style={styles.box1}>
                         <Text style={styles.text}>Recuerda no compartir tu información, es exclusiva y puede haber ciertos conflicos si es compartida. {"\n\n"}Procure hacer un uso adecuado de sus datos.</Text>
