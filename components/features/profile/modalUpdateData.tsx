@@ -1,6 +1,8 @@
 import { View, Text, Modal, StyleSheet, TouchableOpacity, TextInput, KeyboardAvoidingView, Platform, ScrollView } from "react-native";
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { LinearGradient } from "expo-linear-gradient";
+import { ProfileService } from "./services/profileService";
+import { useEffect, useState } from "react";
 
 interface ModalUpdateDataProps {
     modalVisible: boolean;
@@ -8,6 +10,28 @@ interface ModalUpdateDataProps {
 }
 
 export default function ModalUpdateData({ modalVisible, setModalVisible }: ModalUpdateDataProps) {
+
+    const[name, setName] = useState("");
+    const[lastName, setLastName] = useState("");
+    const[email, setEmail] = useState("");
+
+    const profileService = new ProfileService();
+
+    useEffect(() => {
+        const fetchUserData = async () => {
+            const profileData = await profileService.currentUser();
+            if (profileData) {
+                setName(profileData.name || "");
+                setLastName(profileData.lastname || "");
+                setEmail(profileData.email || "");
+            }
+        };
+
+        if (modalVisible) {
+            fetchUserData();
+        }
+    }, [modalVisible]);
+
     return (
         <Modal
             visible={modalVisible}
