@@ -1,4 +1,4 @@
-import { View, Text, Modal, StyleSheet, TouchableOpacity, TextInput, KeyboardAvoidingView, Platform, ScrollView } from "react-native";
+import { View, Text, Modal, StyleSheet, TouchableOpacity, TextInput, KeyboardAvoidingView, Platform, ScrollView, Alert } from "react-native";
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { LinearGradient } from "expo-linear-gradient";
 import { ProfileService } from "./services/profileService";
@@ -32,6 +32,31 @@ export default function ModalUpdateData({ modalVisible, setModalVisible }: Modal
         }
     }, [modalVisible]);
 
+    const handleUpdate = async () => {
+        if (!name.trim() || !lastName.trim() || !email.trim()) {
+            Alert.alert("Error", "Todos los campos son obligatorios.");
+            return;
+        }
+        const updateUser = await profileService.editProfile({
+            newEmail: email,
+            newName: name,
+            newLastName: lastName
+        });
+    
+        if (updateUser) {
+            Alert.alert("Perfil actualizado", "Tus datos se han actualizado correctamente.", [
+                {
+                    text: "OK",
+                    onPress: () => {
+                        setModalVisible(false);
+                    },
+                },
+            ]);
+        } else {
+            Alert.alert("Error", "El usuario no se pudo actualizar");
+        }
+    };
+
     return (
         <Modal
             visible={modalVisible}
@@ -57,18 +82,37 @@ export default function ModalUpdateData({ modalVisible, setModalVisible }: Modal
                         </View>
                         <Text style={styles.title}>Actualizar Datos</Text>
                         <ScrollView style={styles.scroll}>
-                            <View style={styles.form}>
+                        <View style={styles.form}>
                                 <Text style={styles.text}>Nombre</Text>
-                                <TextInput style={styles.input} placeholder="Ingresa tu nombre" />
+                                <TextInput
+                                    style={styles.input}
+                                    placeholder="Ingresa tu nombre"
+                                    value={name}
+                                    onChangeText={setName}
+                                />
 
                                 <Text style={styles.text}>Apellidos</Text>
-                                <TextInput style={styles.input} placeholder="Ingresa tus apellidos" />
+                                <TextInput
+                                    style={styles.input}
+                                    placeholder="Ingresa tus apellidos"
+                                    value={lastName}
+                                    onChangeText={setLastName}
+                                />
 
                                 <Text style={styles.text}>Email</Text>
-                                <TextInput style={styles.input} placeholder="Correo electrónico" keyboardType="email-address" />
+                                <TextInput
+                                    style={styles.input}
+                                    placeholder="Correo electrónico"
+                                    keyboardType="email-address"
+                                    autoCapitalize="none"
+                                    value={email}
+                                    onChangeText={setEmail}
+                                />
                             </View>
                             <View style={styles.box_btn}>
-                                <TouchableOpacity style={styles.btn_update}>
+                                <TouchableOpacity style={styles.btn_update}
+                                onPress={handleUpdate}
+                                >
                                         <Text style={styles.text_btn}>Actualizar</Text>
                                 </TouchableOpacity>
                             </View>

@@ -70,44 +70,56 @@ export class DataSource {
     /**
      * Actualiza de datos del usuario autenticado
      */
-    async updateUser(user:{newEmail:string, newName:string, newLastName:string}) {
+    async updateUser(user: { newEmail: string, newName: string, newLastName: string }) {
         const { data: userData, error: userError } = await supabase.auth.getUser();
         if (userError || !userData?.user) {
             console.error("Error al obtener el usuario autenticado:", userError?.message);
             return null;
         }
-
-        const userId = userData.user.id; 
-
-        const { data, error } = await supabase.auth.updateUser({
-            email:user.newEmail,
-            /*password: newPassword, 
-            omitimos el password por limitaciones
-            para la implementación*/
-        });
-
-        if (error) {
-            console.error("Error al actualizar Email:", error.message);
+    
+        const userId = userData.user.id;
+    
+        const { data: existingUser, error: existingUserError } = await supabase
+            .from("users")
+            .select("email")
+            .eq("email", user.newEmail)
+            .maybeSingle();
+    
+        if (existingUserError) {
+            console.error("Error al verificar el correo existente:", existingUserError.message);
             return null;
         }
-
-        const { data: profileData, error: profileError } = await supabase
-        .from("users")
-        .update({
+    
+        if (existingUser) {
+            console.error("El correo electrónico ya está en uso por otro usuario.");
+            return null;
+        }
+    
+        const { data: updatedAuthUser, error: authError } = await supabase.auth.updateUser({
             email: user.newEmail,
-            name: user.newName,
-            lastname: user.newLastName,
-        })
-        .eq("id", userId)
-        .select()
-        .single();
-
+        });
+    
+        if (authError) {
+            console.error("Error al actualizar el correo en auth.users:", authError.message);
+            return null;
+        }
+    
+        const { data: profileData, error: profileError } = await supabase
+            .from("users")
+            .update({
+                email: user.newEmail,
+                name: user.newName,
+                lastname: user.newLastName,
+            })
+            .eq("id", userId)
+            .select()
+            .single();
+    
         if (profileError) {
             console.error("Error al actualizar perfil:", profileError.message);
             return null;
         }
-
+    
         return profileData;
-        
     }
 }

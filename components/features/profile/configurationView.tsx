@@ -1,20 +1,19 @@
 import { useAuth } from "@/app/context/AuthContext";
 import { router } from "expo-router";
-import { Text, TouchableOpacity, View, StatusBar, StyleSheet, ScrollView, Modal, Alert } from "react-native";
+import { Text, TouchableOpacity, View, StatusBar, StyleSheet, ScrollView, Alert } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { ProfileService } from "./services/profileService";
 import { useEffect, useState } from "react";
 import AntDesign from '@expo/vector-icons/AntDesign';
 import ModalUpdateData from "./modalUpdateData";
+import { User } from "../users/user";
 
 export function ConfigurationView(){
     const [userName, setUserName] = useState("");
     const [userLastName, setUserLastName] = useState("");
     const [userEmail, setUserEmail] = useState("");
-
     const {logout} = useAuth();
     const userService = new ProfileService();
-
     const [modalVisible, setModalVisible] = useState(false);
 
     const handleLogout = async () => {
@@ -33,7 +32,7 @@ export function ConfigurationView(){
         };
         fetchData();
     }, []);
-    
+
     return(
         <View>
             <StatusBar backgroundColor="white" barStyle="dark-content"/>
@@ -67,8 +66,10 @@ export function ConfigurationView(){
                             <Text style={styles.title1}>¿Deseas actualizar tus datos?</Text>
                             <Text style={styles.text2}>Da clic en el siguiente botón</Text>
                             <AntDesign name="arrowdown" size={20} color="black" />
-                            <TouchableOpacity style={styles.btn_update}>
-                                <Text style={styles.text_btn} onPress={() => setModalVisible(true)}>Actualizar datos</Text>
+                            <TouchableOpacity style={styles.btn_update}
+                            onPress={() => setModalVisible(true)}
+                            >
+                                <Text style={styles.text_btn}>Actualizar datos</Text>
                             </TouchableOpacity>
                             <Text style={styles.text2}>Posteriormente sigue las indicaciones.</Text>
                         </View>
@@ -80,14 +81,19 @@ export function ConfigurationView(){
                             <Text style={styles.title1}>Cambio de contraseña</Text>
                             <Text style={styles.text}>Si desea hacer un cambio de contraseña, de clic en el siguiente botón y siga las indicaciónes.</Text>
                             <View style={styles.box3_1}>
-                                <TouchableOpacity style={styles.btn_update}>
+                                <TouchableOpacity style={styles.btn_update}
+                                    onPress={() => Alert.alert("Próximamente")}
+                                >
                                     <Text style={styles.text_btn}>Cambiar contraseña</Text>
                                 </TouchableOpacity>
                             </View>
                     </View>
                 </ScrollView>
             </LinearGradient>
-            <ModalUpdateData modalVisible={modalVisible} setModalVisible={setModalVisible} />
+            <ModalUpdateData 
+                modalVisible={modalVisible} 
+                setModalVisible={setModalVisible}
+            />
         </View>
     )
 }

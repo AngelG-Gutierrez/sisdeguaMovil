@@ -79,7 +79,9 @@ export function SignUpView() {
                         />
                     </View>
                     <View style={styles.box2_3}>
-                        <TouchableOpacity style={styles.check} onPress={handleSignUp}>
+                        <TouchableOpacity style={styles.check} 
+                            onPress={handleSignUp}
+                        >
                             <Text>Registrarse</Text>
                         </TouchableOpacity>
                     </View>
