@@ -38,26 +38,11 @@ export class DataSource {
 
         return profileData;
     }
-
-    /**
-     * Inicia sesión con email y contraseña
+    
+    /*
+     Obtiene los datos del usuario autenticado junto con su perfil para consumo en vista
      */
-    async loginUser(email: string, password: string) {
-        const { data, error } = await supabase.auth.signInWithPassword({
-            email,
-            password,
-        });
 
-        if (error) {
-            console.error("Error al iniciar sesión:", error.message);
-            return null;
-        }
-        return data;
-    }
-
-    /**
-     * Obtiene los datos del usuario autenticado junto con su perfil
-     */
     async getCurrentUser() {
         const { data: authData, error: authError } = await supabase.auth.getUser();
 
@@ -83,30 +68,46 @@ export class DataSource {
     }
 
     /**
-     * Actualiza la contraseña del usuario autenticado
+     * Actualiza de datos del usuario autenticado
      */
-    async updateUser(newPassword: string) {
+    async updateUser(user:{newEmail:string, newName:string, newLastName:string}) {
+        const { data: userData, error: userError } = await supabase.auth.getUser();
+        if (userError || !userData?.user) {
+            console.error("Error al obtener el usuario autenticado:", userError?.message);
+            return null;
+        }
+
+        const userId = userData.user.id; 
+
         const { data, error } = await supabase.auth.updateUser({
-            password: newPassword,
+            email:user.newEmail,
+            /*password: newPassword, 
+            omitimos el password por limitaciones
+            para la implementación*/
         });
 
         if (error) {
-            console.error("Error al actualizar la contraseña:", error.message);
+            console.error("Error al actualizar Email:", error.message);
             return null;
         }
-        return data;
-    }
 
-    /**
-     * Cierra sesión del usuario
-     */
-    async logoutUser() {
-        const { error } = await supabase.auth.signOut();
+        const { data: profileData, error: profileError } = await supabase
+        .from("users")
+        .update({
+            email: user.newEmail,
+            name: user.newName,
+            lastname: user.newLastName,
+        })
+        .eq("id", userId)
+        .select()
+        .single();
 
-        if (error) {
-            console.error("Error al cerrar sesión:", error.message);
-            return false;
+        if (profileError) {
+            console.error("Error al actualizar perfil:", profileError.message);
+            return null;
         }
-        return true;
+
+        return profileData;
+        
     }
 }

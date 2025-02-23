@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert, StatusBar } from "react-native";
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
-import AntDesign from '@expo/vector-icons/AntDesign';
 import { useRouter } from "expo-router"; 
-import { DataSource } from "./dataSource";
+import { UserService } from "./services/userService";
 import { LinearGradient } from "expo-linear-gradient";
 
 export function SignUpView() {
@@ -14,13 +13,13 @@ export function SignUpView() {
     const [password, setPassword] = useState("");
     
     const handleSignUp = async () => {
-        if (!name || !lastName || !email || !password) {
+        if (!name.trim() || !lastName.trim() || !email.trim() || !password.trim()) {
             Alert.alert("Error", "Todos los campos son obligatorios.");
             return;
         }
 
-        const dataSource = new DataSource();
-        const newUser = await dataSource.addUser({ email, name, lastname: lastName, password });
+        const userService = new UserService();
+        const newUser = await userService.register({ email, password, name, lastname:lastName});
 
         if (newUser) {
             Alert.alert("Éxito", "Usuario registrado correctamente.");
