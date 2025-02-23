@@ -6,7 +6,6 @@ import { ProfileService } from "./services/profileService";
 import { useEffect, useState } from "react";
 import AntDesign from '@expo/vector-icons/AntDesign';
 import ModalUpdateData from "./modalUpdateData";
-import { User } from "../users/user";
 
 export function ConfigurationView(){
     const [userName, setUserName] = useState("");
@@ -21,17 +20,25 @@ export function ConfigurationView(){
         router.replace("/about/(aLogin)");
     }
 
+    const fetchData = async () => {
+        const userData = await userService.currentUser();
+        if (userData) {
+            setUserName(userData.name);
+            setUserLastName(userData.lastname);
+            setUserEmail(userData.email);
+        }
+    };
+
+    // Se llama a fetchData al cargar el componente
     useEffect(() => {
-        const fetchData = async () => {
-            const userData = await userService.currentUser();
-            if (userData) {
-                setUserName(userData.name);
-                setUserLastName(userData.lastname);
-                setUserEmail(userData.email);
-            }
-        };
         fetchData();
     }, []);
+
+    // Se llama a fetchData cuando el modal se cierra y se actualizan los datos
+    const handleUpdateDataClose = () => {
+        setModalVisible(false);
+        fetchData(); // Actualiza los datos del usuario después de cerrar el modal
+    };
 
     return(
         <View>
@@ -92,7 +99,7 @@ export function ConfigurationView(){
             </LinearGradient>
             <ModalUpdateData 
                 modalVisible={modalVisible} 
-                setModalVisible={setModalVisible}
+                setModalVisible={handleUpdateDataClose}
             />
         </View>
     )

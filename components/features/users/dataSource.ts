@@ -79,47 +79,56 @@ export class DataSource {
     
         const userId = userData.user.id;
     
-        const { data: existingUser, error: existingUserError } = await supabase
-            .from("users")
-            .select("email")
-            .eq("email", user.newEmail)
-            .maybeSingle();
+        if (userData.user.email !== user.newEmail) {
+            const { data: existingUser, error: existingUserError } = await supabase
+                .from("users")
+                .select("email")
+                .eq("email", user.newEmail)
+                .maybeSingle();
     
-        if (existingUserError) {
-            console.error("Error al verificar el correo existente:", existingUserError.message);
-            return null;
+            if (existingUserError) {
+                console.error("Error al verificar el correo existente:", existingUserError.message);
+                return null;
+            }
+    
+            if (existingUser) {
+                console.error("El correo electrónico ya está en uso por otro usuario.");
+                return null;
+            }
         }
     
-        if (existingUser) {
-            console.error("El correo electrónico ya está en uso por otro usuario.");
-            return null;
+        const updateAuthData: any = {};
+        if (user.newEmail !== userData.user.email) {
+            updateAuthData.email = user.newEmail;
         }
     
-        const { data: updatedAuthUser, error: authError } = await supabase.auth.updateUser({
-            email: user.newEmail,
-        });
+        const { data: updatedAuthUser, error: authError } = await supabase.auth.updateUser(updateAuthData);
     
         if (authError) {
             console.error("Error al actualizar el correo en auth.users:", authError.message);
             return null;
         }
     
-        const { data: profileData, error: profileError } = await supabase
-            .from("users")
-            .update({
-                email: user.newEmail,
-                name: user.newName,
-                lastname: user.newLastName,
-            })
-            .eq("id", userId)
-            .select()
-            .single();
+        const profileUpdates: any = {};
+        if (user.newName) profileUpdates.name = user.newName;
+        if (user.newLastName) profileUpdates.lastname = user.newLastName;
     
-        if (profileError) {
-            console.error("Error al actualizar perfil:", profileError.message);
-            return null;
+        if (Object.keys(profileUpdates).length > 0) {
+            const { data: profileData, error: profileError } = await supabase
+                .from("users")
+                .update(profileUpdates)
+                .eq("id", userId)
+                .select()
+                .single();
+    
+            if (profileError) {
+                console.error("Error al actualizar perfil:", profileError.message);
+                return null;
+            }
+    
+            return profileData;
         }
     
-        return profileData;
+        return userData.user;
     }
 }
