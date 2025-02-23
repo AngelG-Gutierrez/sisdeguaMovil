@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert, StatusBar, Image } from "react-native";
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import Feather from '@expo/vector-icons/Feather';
-import { DataSource } from "./dataSource";
 import { useRouter } from "expo-router"
 import { useAuth } from "@/app/context/AuthContext";
 import { LinearGradient } from "expo-linear-gradient";
@@ -10,7 +9,6 @@ import Svg, { Path } from "react-native-svg";
 
 export function LoginView() {
     const router = useRouter();
-    const dataSource = new DataSource();
     const [user, setUser] = useState("");
     const [password, setPassword] = useState("");
     const {login} = useAuth();
