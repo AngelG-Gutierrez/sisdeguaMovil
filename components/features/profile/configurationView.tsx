@@ -29,15 +29,13 @@ export function ConfigurationView(){
         }
     };
 
-    // Se llama a fetchData al cargar el componente
     useEffect(() => {
         fetchData();
     }, []);
 
-    // Se llama a fetchData cuando el modal se cierra y se actualizan los datos
     const handleUpdateDataClose = () => {
         setModalVisible(false);
-        fetchData(); // Actualiza los datos del usuario después de cerrar el modal
+        fetchData();
     };
 
     return(
