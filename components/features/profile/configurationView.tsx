@@ -73,6 +73,18 @@ export function ConfigurationView(){
                             <Text style={styles.text2}>Posteriormente sigue las indicaciones.</Text>
                         </View>
                     </View>
+                    <View style={styles.box3}>
+                        <View style={styles.box3_1}>
+                            <Text style={styles.title1}>Información de Seguridad</Text>
+                        </View>
+                            <Text style={styles.title1}>Cambio de contraseña</Text>
+                            <Text style={styles.text}>Si desea hacer un cambio de contraseña, de clic en el siguiente botón y siga las indicaciónes.</Text>
+                            <View style={styles.box3_1}>
+                                <TouchableOpacity style={styles.btn_update}>
+                                    <Text style={styles.text_btn}>Cambiar contraseña</Text>
+                                </TouchableOpacity>
+                            </View>
+                    </View>
                 </ScrollView>
             </LinearGradient>
             <ModalUpdateData modalVisible={modalVisible} setModalVisible={setModalVisible} />
@@ -187,8 +199,28 @@ const styles = StyleSheet.create({
         padding: 10,
         margin: 5,
         borderRadius: 10,
+        width: 161,
+        alignItems: 'center',
     },
     text_btn:{
         color: '#ffffff',
+    },
+    box3:{
+        padding: 14,
+        marginTop: 10,
+        width: '100%',
+        height: 210,
+        borderWidth: 0.5,
+        borderColor: '#000000',
+        borderRadius: 15,
+        marginBottom: 30,
+        backgroundColor: 'rgba(255, 255, 255, 0.7)',
+    },
+    box3_1:{
+        width: '100%',
+        alignItems: 'center',
+    },
+    box3_info:{
+        width: '100%',
     },
 })

@@ -42,9 +42,6 @@ export default function ModalUpdateData({ modalVisible, setModalVisible }: Modal
 
                                 <Text style={styles.text}>Email</Text>
                                 <TextInput style={styles.input} placeholder="Correo electrónico" keyboardType="email-address" />
-
-                                <Text style={styles.text}>Contraseña</Text>
-                                <TextInput style={styles.input} placeholder="Contraseña" secureTextEntry />
                             </View>
                             <View style={styles.box_btn}>
                                 <TouchableOpacity style={styles.btn_update}>
@@ -70,7 +67,7 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         backgroundColor: '#9fc5f8',
         width: '80%',
-        height: '70%',
+        height: '60%',
     },
     linear:{
         height: '100%',
