@@ -1,4 +1,4 @@
-import { DataSource } from "../../users/dataSource";
+import { DataSource } from "../../users/dataSource/dataSource";
 
 export class ProfileService{
     datasource: DataSource;

@@ -1,4 +1,4 @@
-import { DataSource } from "../../users/dataSource";
+import { DataSource } from "../dataSource/dataSource";
 
 export class UserService{
     userService: DataSource;
