@@ -13,7 +13,6 @@ export default function ModalUpdateData({ modalVisible, setModalVisible }: Modal
 
     const[name, setName] = useState("");
     const[lastName, setLastName] = useState("");
-    const[email, setEmail] = useState("");
 
     const profileService = new ProfileService();
 
@@ -23,7 +22,6 @@ export default function ModalUpdateData({ modalVisible, setModalVisible }: Modal
             if (profileData) {
                 setName(profileData.name || "");
                 setLastName(profileData.lastname || "");
-                setEmail(profileData.email || "");
             }
         };
 
@@ -33,12 +31,11 @@ export default function ModalUpdateData({ modalVisible, setModalVisible }: Modal
     }, [modalVisible]);
 
     const handleUpdate = async () => {
-        if (!name.trim() || !lastName.trim() || !email.trim()) {
+        if (!name.trim() || !lastName.trim()) {
             Alert.alert("Error", "Todos los campos son obligatorios.");
             return;
         }
         const updateUser = await profileService.editProfile({
-            newEmail: email,
             newName: name,
             newLastName: lastName
         });
@@ -97,16 +94,6 @@ export default function ModalUpdateData({ modalVisible, setModalVisible }: Modal
                                     placeholder="Ingresa tus apellidos"
                                     value={lastName}
                                     onChangeText={setLastName}
-                                />
-
-                                <Text style={styles.text}>Email</Text>
-                                <TextInput
-                                    style={styles.input}
-                                    placeholder="Correo electrónico"
-                                    keyboardType="email-address"
-                                    autoCapitalize="none"
-                                    value={email}
-                                    onChangeText={setEmail}
                                 />
                             </View>
                             <View style={styles.box_btn}>

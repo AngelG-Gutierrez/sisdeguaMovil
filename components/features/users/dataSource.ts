@@ -70,7 +70,7 @@ export class DataSource {
     /**
      * Actualiza de datos del usuario autenticado
      */
-    async updateUser(user: { newEmail: string, newName: string, newLastName: string }) {
+    async updateUser(user: {newName: string, newLastName: string }) {
         const { data: userData, error: userError } = await supabase.auth.getUser();
         if (userError || !userData?.user) {
             console.error("Error al obtener el usuario autenticado:", userError?.message);
@@ -78,36 +78,6 @@ export class DataSource {
         }
     
         const userId = userData.user.id;
-    
-        if (userData.user.email !== user.newEmail) {
-            const { data: existingUser, error: existingUserError } = await supabase
-                .from("users")
-                .select("email")
-                .eq("email", user.newEmail)
-                .maybeSingle();
-    
-            if (existingUserError) {
-                console.error("Error al verificar el correo existente:", existingUserError.message);
-                return null;
-            }
-    
-            if (existingUser) {
-                console.error("El correo electrónico ya está en uso por otro usuario.");
-                return null;
-            }
-        }
-    
-        const updateAuthData: any = {};
-        if (user.newEmail !== userData.user.email) {
-            updateAuthData.email = user.newEmail;
-        }
-    
-        const { data: updatedAuthUser, error: authError } = await supabase.auth.updateUser(updateAuthData);
-    
-        if (authError) {
-            console.error("Error al actualizar el correo en auth.users:", authError.message);
-            return null;
-        }
     
         const profileUpdates: any = {};
         if (user.newName) profileUpdates.name = user.newName;

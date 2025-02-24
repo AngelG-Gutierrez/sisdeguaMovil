@@ -11,7 +11,7 @@ export class ProfileService{
         return this.datasource.getCurrentUser();
     }
 
-    editProfile(user:{newEmail: string; newName: string; newLastName: string}) {
+    editProfile(user:{newName: string; newLastName: string}) {
         return this.datasource.updateUser(user);
     }
 }
