@@ -194,6 +194,7 @@ const styles = StyleSheet.create({
     text:{
         fontSize: 14,
         lineHeight: 30,
+        textAlign:"justify"
     },
     text2:{
         fontSize: 14,
