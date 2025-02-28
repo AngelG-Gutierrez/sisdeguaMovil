@@ -12,14 +12,14 @@ export function ProbabilityInfo(){
 
     useEffect(() => {
         const fetchData = async () => {
-            const formattedData = await probabilityService.getFormattedData();
             const dataReal = await probabilityService.getFormattedDataReal();
             setLevelRain(dataReal[0]?.rainLevel)
             setlevelWater(dataReal[0]?.waterLevel)
-            setProbabilityData(formattedData);
+            setProbabilityData(dataReal);
         };
 
-        fetchData();
+        const interval = setInterval(fetchData, 1000);
+        return () => clearInterval(interval);
     }, []);
 
     const averageWaterLevel = probabilityData.length > 0 

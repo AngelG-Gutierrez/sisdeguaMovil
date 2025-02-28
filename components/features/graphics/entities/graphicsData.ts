@@ -12,7 +12,7 @@ export class GraphicsData {
         return this.dataSource.list();
     }
 
-    async getSensorDataReal(): Promise<SensorData[]> {
+    async getSensorDataReal(): Promise<SensorData[]>  {
         return this.dataSource.listReal();
     }
 }

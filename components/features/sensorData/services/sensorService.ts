@@ -12,10 +12,13 @@ export class SensorDataService{
     }
 
     listReal(){
-        return this.datasource.listReal();
+        return this.datasource.listReal("sensor_001");
     }
 
     get(id:string){
         return this.datasource.get(id);
+    }
+
+    listOrder(){
     }
 }
