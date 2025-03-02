@@ -5,25 +5,7 @@ import { GraphicsService } from "./services/graphicsService";
 
 export function GraphicsCurrent() {
     const [chartData, setChartData] = useState<{ date: string; waterLevel: number; rainLevel: number }[]>([]);
-    //const [previousPoint, setPreviousPoint] = useState<{ date: string; waterLevel: number; rainLevel: number } | null>(null);
     const graphicsService = new GraphicsService();
-
-    {/*useEffect(() => {
-        const fetchData = async () => {
-            const newData = await graphicsService.getFormattedDataReal();
-            if (chartData.length > 0) {
-                setPreviousPoint(chartData[chartData.length - 1]);
-                setTimeout(() => setPreviousPoint(null), 1000); 
-            }
-            setChartData(newData);
-        };
-
-        const interval = setInterval(fetchData, 1000);
-
-        return () => clearInterval(interval);
-    }, [chartData]);
-
-    const displayedData = previousPoint ? [...chartData, previousPoint] : chartData;*/}
 
     useEffect(() => {
         const fetchData = async () => {
