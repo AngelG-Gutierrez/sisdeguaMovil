@@ -4,7 +4,7 @@ import { LineChart } from "react-native-chart-kit";
 import { GraphicsService } from "./services/graphicsService";
 
 export function GraphicsCurrent() {
-    const [chartData, setChartData] = useState<{ date: string; waterLevel: number; rainLevel: number }[]>([]);
+    const [chartData, setChartData] = useState<{ date: string; waterLevel: number}[]>([]);
     const graphicsService = new GraphicsService();
 
     useEffect(() => {
@@ -28,15 +28,18 @@ export function GraphicsCurrent() {
                             {
                                 data: chartData.map(d => d.waterLevel),
                                 color: (opacity = 1) => `rgba(0, 0, 255, ${opacity})`,
-                                strokeWidth: 2
+                                strokeWidth: 4
                             }
                         ]
                     }}
                     width={Dimensions.get("window").width - 70}
                     height={310}
                     yAxisLabel=""
+                    xLabelsOffset={10}
+                    yLabelsOffset={25}
+                    yAxisSuffix="%"
                     yAxisInterval={1}
-                    segments={8}
+                    segments={10}
                     chartConfig={{
                         backgroundGradientFrom: "#fff",
                         backgroundGradientTo: "#fff",
@@ -44,7 +47,7 @@ export function GraphicsCurrent() {
                         color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
                         labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
                         style: { borderRadius: 16 },
-                        propsForDots: { r: "3", strokeWidth: "1" },
+                        propsForDots: { r: "4", strokeWidth: "4" },
                     }}
                     style={styles.chart}
                 />

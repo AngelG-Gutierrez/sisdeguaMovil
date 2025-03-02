@@ -86,7 +86,7 @@ export function HomeView(){
                     <ProbabilityInfo/>
                 </View>
                 <View style={styles.container_graphic}>
-                    <GraphicsCurrent></GraphicsCurrent>
+                    <GraphicsCurrent/>
                 </View>            
             </ScrollView>
         </LinearGradient>

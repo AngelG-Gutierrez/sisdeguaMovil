@@ -13,7 +13,6 @@ export class GraphicsService {
         return sensorData.map(data => ({
             date: data.date.toLocaleTimeString(), 
             waterLevel: data.waterLevel, 
-            rainLevel: data.rainLevel,   
         }));
     }
 
@@ -23,7 +22,6 @@ export class GraphicsService {
         return sensorData.map(data => ({
             date: data.date.toLocaleTimeString(), 
             waterLevel: data.waterLevel, 
-            rainLevel: data.rainLevel,   
         }));
     }
 }
