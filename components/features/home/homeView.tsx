@@ -19,14 +19,13 @@ export function HomeView(){
                 if (dataReal.length > 0) {
                     setLevelRain(dataReal[0]?.rainIntensity);
                     setWaterProbability(dataReal[0]?.waterProbability);
-                    console.log(waterProbability)
                 }
             } catch (error) {
                 console.error("Error obteniendo los datos:", error);
             }
         };
 
-        const interval = setInterval(fetchData, 1000);
+        const interval = setInterval(fetchData, 5000);
         return () => clearInterval(interval);
     }, []);
 

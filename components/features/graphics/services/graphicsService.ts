@@ -7,15 +7,6 @@ export class GraphicsService {
         this.graphicsData = new GraphicsData();
     }
 
-    async getFormattedData() {
-        const sensorData = await this.graphicsData.getSensorData();
-
-        return sensorData.map(data => ({
-            date: data.date.toLocaleTimeString(), 
-            waterLevel: data.waterLevel, 
-        }));
-    }
-
     async getFormattedDataReal() {
         const sensorData = await this.graphicsData.getSensorDataReal();
 

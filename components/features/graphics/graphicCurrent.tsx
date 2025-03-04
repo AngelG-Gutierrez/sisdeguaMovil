@@ -4,18 +4,36 @@ import { LineChart } from "react-native-chart-kit";
 import { GraphicsService } from "./services/graphicsService";
 
 export function GraphicsCurrent() {
-    const [chartData, setChartData] = useState<{ date: string; waterLevel: number}[]>([]);
+    const [chartData, setChartData] = useState<{ date: string; waterLevel: number }[]>([]);
     const graphicsService = new GraphicsService();
+    const MAX_DATA_POINTS = 5;
 
     useEffect(() => {
         const fetchData = async () => {
-            const newData = (await graphicsService.getFormattedDataReal()).reverse();
-            setChartData(newData);
+            const newData = (await graphicsService.getFormattedDataReal())[0];
+
+            setChartData(prevData => {
+                const updatedData = [...prevData];
+                
+                updatedData.push(newData);
+                
+                if (updatedData.length > MAX_DATA_POINTS) {
+                    updatedData.shift();
+                }
+
+                return updatedData;
+            });
         };
 
-        const interval = setInterval(fetchData, 1000);
+        const interval = setInterval(fetchData, 5000);
         return () => clearInterval(interval);
     }, []);
+
+    const getColor = (value: number) => {
+        if (value <= 30) return 'rgba(0, 255, 0, 1)'; // Verde
+        if (value <= 60) return 'rgba(255, 165, 0, 1)'; // Naranja
+        return 'rgba(255, 0, 0, 1)'; // Rojo
+    };
 
     return (
         <View style={styles.container}>
@@ -39,15 +57,17 @@ export function GraphicsCurrent() {
                     yLabelsOffset={25}
                     yAxisSuffix="%"
                     yAxisInterval={1}
+                    fromZero={true}
                     segments={10}
                     chartConfig={{
                         backgroundGradientFrom: "#fff",
                         backgroundGradientTo: "#fff",
                         decimalPlaces: 0,
-                        color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+                        color: (opacity = 1) => `rgba(0, 0, 255, ${opacity})`,
                         labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
                         style: { borderRadius: 16 },
-                        propsForDots: { r: "4", strokeWidth: "4" },
+                        propsForDots: { r: "4", strokeWidth: "4", stroke: getColor(chartData[chartData.length - 1]?.waterLevel) },
+                        propsForLabels: { fontSize: 12 },
                     }}
                     style={styles.chart}
                 />

@@ -8,11 +8,11 @@ export class GraphicsData {
         this.dataSource = new SensorDataService();
     }
 
-    async getSensorData(): Promise<SensorData[]> {
+    async getSensorData(){
         return this.dataSource.list();
     }
 
-    async getSensorDataReal(): Promise<SensorData[]>  {
+    async getSensorDataReal(){
         return this.dataSource.listReal();
     }
 }

@@ -12,23 +12,24 @@ export function ProbabilityInfo(){
 
     useEffect(() => {
         const fetchData = async () => {
-            const dataReal = await probabilityService.getFormattedDataReal();
-            setLevelRain(dataReal[0]?.rainLevel)
-            setlevelWater(dataReal[0]?.waterLevel)
-            setProbabilityData(dataReal);
+            const data = await probabilityService.getFormattedDataReal();
+            //const dataProm = await probabilityService.getFormattedDate();
+            setLevelRain(data[0]?.rainLevel)
+            setlevelWater(data[0]?.waterLevel)
+            setProbabilityData(data);
         };
 
-        const interval = setInterval(fetchData, 1000);
+        const interval = setInterval(fetchData, 5000);
         return () => clearInterval(interval);
     }, []);
 
-    const averageWaterLevel = probabilityData.length > 0 
+    /*const averageWaterLevel = probabilityData.length > 0 
     ? Math.trunc(probabilityData.reduce((sum, data) => sum + data.waterLevel, 0) / probabilityData.length)
     : 0;
 
     const averageRainLevel = probabilityData.length > 0 
     ? Math.trunc(probabilityData.reduce((sum, data) => sum + data.rainLevel, 0) / probabilityData.length)
-    : 0;
+    : 0;*/
 
     return(
         <View style={styles.cards}>
@@ -46,8 +47,8 @@ export function ProbabilityInfo(){
                         <Text style={styles.rainLevel}>{levelWater}%</Text>
                     </View>
                 </View>
-                <Text style={styles.text1}>Nivel de agua promedio</Text>
-                <Text style={styles.text2}>{averageWaterLevel}%</Text>
+                {/*<Text style={styles.text1}>Nivel de agua promedio</Text>
+                <Text style={styles.text2}>{averageWaterLevel}%</Text>*/}
             </View>
 
             <View style = {styles.box1_Container}>
@@ -62,8 +63,8 @@ export function ProbabilityInfo(){
                     </View>
                     <Text style={styles.rainLevel}>{levelRain}%</Text>
                 </View>
-                    <Text style={styles.text1}>Nivel de precipitación promedio</Text>
-                    <Text style={styles.text2}>{averageRainLevel}%</Text>
+                    {/*<Text style={styles.text1}>Nivel de precipitación promedio</Text>
+                    <Text style={styles.text2}>{averageRainLevel}%</Text>*/}
             </View>
 
         </View>

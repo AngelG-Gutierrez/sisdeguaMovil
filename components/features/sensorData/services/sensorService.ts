@@ -12,6 +12,10 @@ export class SensorDataService{
     }
 
     listReal(){
-        return this.datasource.listReal("sensor_001");
+        return this.datasource.listReal();
+    }
+
+    listDate(startDate: string, endDate: string){
+        return this.datasource.listDate(startDate, endDate);
     }
 }
