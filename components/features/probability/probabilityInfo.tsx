@@ -13,15 +13,22 @@ export function ProbabilityInfo(){
     useEffect(() => {
         const fetchData = async () => {
             const data = await probabilityService.getFormattedDataReal();
-            const dataProm = await probabilityService.getFormattedDate();
             setLevelRain(data[0]?.rainLevel)
             setlevelWater(data[0]?.waterLevel)
-            setProbabilityData(dataProm);
         };
 
         const interval = setInterval(fetchData, 5000);
         return () => clearInterval(interval);
     }, []);
+
+    {/*useEffect(() => {
+        const fetchData = async () => {
+            const dataProm = await probabilityService.getFormattedDate();
+            setProbabilityData(dataProm);
+        };
+        const interval = setInterval(fetchData, 10800000);
+        return () => clearInterval(interval);
+    }, []);*/}
 
     const averageWaterLevel = probabilityData.length > 0 
     ? Math.trunc(probabilityData.reduce((sum, data) => sum + data.waterLevel, 0) / probabilityData.length)

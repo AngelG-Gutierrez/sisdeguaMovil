@@ -36,7 +36,6 @@ export class ProbabilityService {
         const startDate = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 0, 0, 0);
         const endDate = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 23, 59, 59);
 
-        // Convert startDate and endDate to UTC
         const startDateUTC = new Date(startDate.toISOString());
         const endDateUTC = new Date(endDate.toISOString());
 
