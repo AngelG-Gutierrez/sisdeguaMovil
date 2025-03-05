@@ -21,14 +21,14 @@ export function ProbabilityInfo(){
         return () => clearInterval(interval);
     }, []);
 
-    {/*useEffect(() => {
+    useEffect(() => {
         const fetchData = async () => {
             const dataProm = await probabilityService.getFormattedDate();
             setProbabilityData(dataProm);
         };
-        const interval = setInterval(fetchData, 10800000);
+        const interval = setInterval(fetchData, 5000);
         return () => clearInterval(interval);
-    }, []);*/}
+    }, []);
 
     const averageWaterLevel = probabilityData.length > 0 
     ? Math.trunc(probabilityData.reduce((sum, data) => sum + data.waterLevel, 0) / probabilityData.length)

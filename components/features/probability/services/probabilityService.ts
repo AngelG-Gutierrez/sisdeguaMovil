@@ -32,15 +32,8 @@ export class ProbabilityService {
     }
 
     async getFormattedDate() {
-        const today = new Date();
-        const startDate = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 0, 0, 0);
-        const endDate = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 23, 59, 59);
 
-        const startDateUTC = new Date(startDate.toISOString());
-        const endDateUTC = new Date(endDate.toISOString());
-
-        const sensorData = await this.probabilityData.getSensorDate(startDateUTC.toISOString(), endDateUTC.toISOString());
-        console.log(startDateUTC.toISOString(), endDateUTC.toISOString());
+        const sensorData = await this.probabilityData.getSensorDate();
 
         return sensorData.map(data => ({
             date: new Date(data.date).toLocaleString('es-MX', { timeZone: 'America/Mexico_City' }), 

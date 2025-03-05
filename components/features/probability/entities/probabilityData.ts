@@ -16,7 +16,7 @@ export class ProbabilityData {
         return this.dataSource.listReal();
     }
 
-    async getSensorDate(startDate: string, endDate: string): Promise<SensorData[]> {
-        return this.dataSource.listDate(startDate, endDate);
+    async getSensorDate(): Promise<SensorData[]> {
+        return this.dataSource.listDate();
     }
 }
