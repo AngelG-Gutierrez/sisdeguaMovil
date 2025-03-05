@@ -24,15 +24,11 @@ export function GraphicsView() {
                                 />
                             </View>
                             <View style={styles.box2}>
-                                <Text style={styles.title}>Histórico del día y actual de los nieveles de agua</Text>
+                                <Text style={styles.title}>Histórico del día</Text>
                             </View>
                         </View>
                         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                            <GraphicsCurrent></GraphicsCurrent>
-                            <Text style={styles.text}>Datos recuperados de el nivel actual del agua</Text>
-                            {/*Aqui va a ir la grafica de el historico del dia*/}
-                            <GraphicsCurrent></GraphicsCurrent>
-                            <Text style={styles.text}>Datos recapitulados de los niveles de agua del día</Text>
+
                         </View>
                     </ScrollView>
             </LinearGradient>

@@ -1,4 +1,3 @@
-import { SensorData } from "../../sensorData/entities/sensorData";
 import { SensorDataService } from "../../sensorData/services/sensorService";
 
 export class GraphicsData {
