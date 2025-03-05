@@ -7,10 +7,6 @@ export class SensorDataService{
         this.datasource = new SensorDataSource();
     }
 
-    list(){
-        return this.datasource.listComplete();
-    }
-
     listReal(){
         return this.datasource.listReal();
     }

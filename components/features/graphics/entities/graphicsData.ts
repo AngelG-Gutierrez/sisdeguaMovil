@@ -8,10 +8,6 @@ export class GraphicsData {
         this.dataSource = new SensorDataService();
     }
 
-    async getSensorData(){
-        return this.dataSource.list();
-    }
-
     async getSensorDataReal(){
         return this.dataSource.listReal();
     }

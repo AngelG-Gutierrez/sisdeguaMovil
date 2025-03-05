@@ -8,10 +8,6 @@ export class ProbabilityData {
         this.dataSource = new SensorDataService();
     }
 
-    async getSensorData(): Promise<SensorData[]> {
-        return this.dataSource.list();
-    }
-
     async getSensorDataReal():Promise<SensorData[]>{
         return this.dataSource.listReal();
     }
