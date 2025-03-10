@@ -7,18 +7,6 @@ export class ProbabilityService {
         this.probabilityData = new ProbabilityData();
     }
 
-    async getFormattedData() {
-        const sensorData = await this.probabilityData.getSensorData();
-
-        return sensorData.map(data => ({
-            date: new Date(data.date).toLocaleString(), 
-            waterLevel: data.waterLevel, 
-            rainLevel: data.rainLevel,
-            rainIntensity: data.rainIntensity,  
-            waterProbability: data.waterProbability,
-        }));
-    }
-
     async getFormattedDataReal() {
         const sensorData = await this.probabilityData.getSensorDataReal();
 
