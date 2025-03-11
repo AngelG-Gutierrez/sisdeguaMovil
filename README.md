@@ -1,4 +1,4 @@
-# Bienvenido al repositorio del proyecto SISDEGUA 👋
+# Bienvenido al repositorio del proyecto SISDEGUA MÓVIL👋
 
 ![Portada del proyecto](assets/images/logo_sisdegua.jpeg)
 
