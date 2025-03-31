@@ -78,7 +78,7 @@ function AuthenticatedScreens() {
         name="cGraphics"
         component={CGraphicsScreen}
         options={{
-           title: "Histórico del día",
+           title: "Últimos Niveles",
            drawerIcon: ({ color, size }) => (
             <Foundation name="graph-bar" size={size} color={color} />
            ),

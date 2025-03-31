@@ -10,4 +10,8 @@ export class GraphicsData {
     async getSensorDataReal(){
         return this.dataSource.listReal();
     }
+
+    async getSensorDataTable(){
+        return this.dataSource.listTable();
+    }
 }

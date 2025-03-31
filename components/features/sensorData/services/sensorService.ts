@@ -14,4 +14,8 @@ export class SensorDataService{
     listDate(){
         return this.datasource.listDate();
     }
+
+    listTable(){
+        return this.datasource.lisLast();
+    }
 }
