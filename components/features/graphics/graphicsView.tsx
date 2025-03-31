@@ -34,9 +34,9 @@ export function GraphicsView() {
     }, []);
 
     const getColor = (value:number) => {    
-        if (value <= 30) return 'rgb(29, 159, 29)';
-        if (value <= 60) return 'rgb(255, 170, 0)';
-        return 'rgba(255, 0, 0, 1)';
+        if (value <= 30) return styles.low;
+        if (value <= 60) return styles.medium;
+        return styles.high;
     };
 
     return (
@@ -73,8 +73,8 @@ export function GraphicsView() {
                                 data={tableData.map(d => 
                                     [
                                         d.date,
-                                        <Text style={{ color: getColor(d.waterLevel), ...styles.text2}}>{d.waterLevel}</Text>, 
-                                        <Text style={{ color: getColor(d.rainLevel), ...styles.text2}}>{d.rainLevel}</Text>
+                                        <Text style={[getColor(d.waterLevel)]}>{d.waterLevel}</Text>, 
+                                        <Text style={[getColor(d.rainLevel)]}>{d.rainLevel}</Text>
                                     ]
                                 )} 
                                 style={styles.row} 
@@ -168,9 +168,22 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize:15,
     },
-    text2: {
+    low:{
+        color: 'rgb(2, 174, 2)',
         textAlign: 'center',
-        fontSize:18,
-        fontWeight:"bold"
+        fontSize: 20,
+        fontWeight: 'bold',
+    },
+    high:{
+        color: 'rgba(255, 0, 0, 0.91)',
+        textAlign: 'center',
+        fontSize: 20,
+        fontWeight: 'bold',
+    },
+    medium:{
+        color: 'rgb(235, 160, 11)',
+        textAlign: 'center',
+        fontSize: 20,
+        fontWeight: 'bold',
     },
 });
