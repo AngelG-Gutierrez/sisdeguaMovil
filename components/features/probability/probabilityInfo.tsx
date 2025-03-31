@@ -53,7 +53,9 @@ export function ProbabilityInfo(){
                     <View>
                         <Text style={styles.rainLevel}>{levelWater}%</Text>
                     </View>
+                    
                 </View>
+                <Text style={{textAlign:"center"}}>---------------------------</Text>
                 <Text style={styles.text1}>Nivel de agua promedio en el día</Text>
                 <Text style={styles.text2}>{averageWaterLevel}%</Text>
             </View>
@@ -70,6 +72,7 @@ export function ProbabilityInfo(){
                     </View>
                     <Text style={styles.rainLevel}>{levelRain}%</Text>
                 </View>
+                    <Text style={{textAlign:"center"}}>-------------------------</Text>
                     <Text style={styles.text1}>Nivel de precipitación promedio en el día</Text>
                     <Text style={styles.text2}>{averageRainLevel}%</Text>
             </View>
@@ -112,6 +115,7 @@ const styles = StyleSheet.create({
 
     rainLevel:{
         fontSize: 25,
+        fontWeight:"bold"
     },
 
     text1:{
@@ -120,12 +124,14 @@ const styles = StyleSheet.create({
         marginLeft:5,
         marginRight:5,
         marginTop: 15,
+        fontWeight:"400"
     },
 
     text2:{
         fontSize: 22,
         textAlign: "center",
         marginTop: 20,
+        fontWeight:"bold"
     },
 
     cards:{

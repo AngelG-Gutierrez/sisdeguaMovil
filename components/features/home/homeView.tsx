@@ -11,7 +11,6 @@ export function HomeView(){
     const [levelRain,setLevelRain] = useState("");
     const [waterProbability,setWaterProbability] = useState("");
     const probabilityService = new ProbabilityService();
-
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -38,7 +37,7 @@ export function HomeView(){
             case "Baja":
                 return styles.low;
             default:
-                return {}; //Sin Lluvia
+                return styles.nothing;
         }
     };
 
@@ -130,9 +129,18 @@ const styles = StyleSheet.create({
         fontSize: 18,
         color: 'white',
         marginTop: 15,
+        fontWeight:"500"
     },
     low:{
         color: '#11d023',
+        textAlign: 'center',
+        fontSize: 25,
+        fontWeight: 'bold',
+        marginBottom:10,
+        marginTop: 10,
+    },
+    nothing:{
+        color: 'rgb(201, 249, 223)',
         textAlign: 'center',
         fontSize: 25,
         fontWeight: 'bold',
@@ -147,7 +155,7 @@ const styles = StyleSheet.create({
         marginBottom:10,
     },
     medium:{
-        color: '#d3e90c',
+        color: 'rgb(246, 255, 0)',
         textAlign: 'center',
         fontSize: 25,
         marginTop: 10,
