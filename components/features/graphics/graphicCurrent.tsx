@@ -25,8 +25,10 @@ export function GraphicsCurrent() {
             });
         };
 
-        const interval = setInterval(fetchData, 5000);
-        return () => clearInterval(interval);
+        fetchData()
+        setInterval(() => {
+            fetchData()
+        }, 5000);
     }, []);
 
     const getColor = (value: number) => {

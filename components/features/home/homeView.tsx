@@ -24,8 +24,10 @@ export function HomeView(){
             }
         };
 
-        const interval = setInterval(fetchData, 5000);
-        return () => clearInterval(interval);
+        fetchData()
+        setInterval(() => {
+            fetchData()
+        }, 5000);
     }, []);
 
     const getColorRain = () => {
