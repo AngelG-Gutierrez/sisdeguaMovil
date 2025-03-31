@@ -73,8 +73,8 @@ export function GraphicsView() {
                                 data={tableData.map(d => 
                                     [
                                         d.date,
-                                        <Text style={[{ color: getColor(d.waterLevel)},styles.text2]}>{d.waterLevel}</Text>, 
-                                        <Text style={[{ color: getColor(d.rainLevel)},styles.text2]}>{d.rainLevel}</Text>
+                                        <Text style={{ color: getColor(d.waterLevel), ...styles.text2}}>{d.waterLevel}</Text>, 
+                                        <Text style={{ color: getColor(d.rainLevel), ...styles.text2}}>{d.rainLevel}</Text>
                                     ]
                                 )} 
                                 style={styles.row} 
