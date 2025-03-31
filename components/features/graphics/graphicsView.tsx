@@ -34,6 +34,7 @@ export function GraphicsView() {
     }, []);
 
     const getColor = (value:number) => {    
+        if(value === 0) return styles.nothing;
         if (value <= 30) return styles.low;
         if (value <= 60) return styles.medium;
         return styles.high;
@@ -108,7 +109,7 @@ const styles = StyleSheet.create({
     },
     row: {
         height: 52,
-        backgroundColor: 'rgb(255, 255, 255)',
+        backgroundColor: 'rgb(254, 247, 241)',
     },
     tableContainer: {
         width: '95%',
@@ -182,6 +183,12 @@ const styles = StyleSheet.create({
     },
     medium:{
         color: 'rgb(235, 160, 11)',
+        textAlign: 'center',
+        fontSize: 20,
+        fontWeight: 'bold',
+    },
+    nothing:{
+        color: 'rgb(69, 85, 76)',
         textAlign: 'center',
         fontSize: 20,
         fontWeight: 'bold',
