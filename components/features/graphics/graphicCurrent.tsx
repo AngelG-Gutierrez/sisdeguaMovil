@@ -28,7 +28,7 @@ export function GraphicsCurrent() {
         fetchData()
         setInterval(() => {
             fetchData()
-        }, 5000);
+        }, 3000);
     }, []);
 
     const getColor = (value: number) => {

@@ -20,7 +20,7 @@ export function ProbabilityInfo(){
         fetchData()
         setInterval(() => {
             fetchData()
-        }, 5000);
+        }, 3000);
     }, []);
 
     useEffect(() => {
@@ -31,7 +31,7 @@ export function ProbabilityInfo(){
         fetchData()
         setInterval(() => {
             fetchData()
-        }, 5000);
+        }, 3000);
     }, []);
 
     const averageWaterLevel = probabilityData.length > 0 
