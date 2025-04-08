@@ -4,7 +4,7 @@ import { programarNotificacionLocal } from "./pushNotificationService";
 class NotificationManager {
   private static instance: NotificationManager;
   private lastNotificationTime: number = 0;
-  private NOTIFICATION_INTERVAL = 30000;
+  private NOTIFICATION_INTERVAL = 10000;
   private isProcessing: boolean = false;
 
   private constructor() {}
