@@ -9,23 +9,30 @@ import * as Notifications from "expo-notifications";
 
 export function HomeView() {
     const [permisoOtorgado, setPermisoOtorgado] = useState(false);
+    const [comprobandoPermiso, setComprobandoPermiso] = useState(true);
     const [levelRain, setLevelRain] = useState("");
     const [waterProbability, setWaterProbability] = useState("");
     const probabilityService = new ProbabilityService();
 
-    const solicitarPermisos = async () => {
-        const { status: estadoActual } = await Notifications.getPermissionsAsync();
-        if (estadoActual !== "granted") {
-            const { status } = await Notifications.requestPermissionsAsync();
-            if (status === "granted") {
+    useEffect(() => {
+        const verificarPermiso = async () => {
+            const { status: estadoActual } = await Notifications.getPermissionsAsync();
+            if (estadoActual === "granted") {
                 setPermisoOtorgado(true);
-                Alert.alert("¡Permiso otorgado!", "Gracias por activar las notificaciones.");
-            } else {
-                Alert.alert("Permiso no otorgado", "No podrás recibir notificaciones push.");
             }
-        } else {
+            setComprobandoPermiso(false);
+        };
+
+        verificarPermiso();
+    }, []);
+
+    const solicitarPermisos = async () => {
+        const { status } = await Notifications.requestPermissionsAsync();
+        if (status === "granted") {
             setPermisoOtorgado(true);
-            Alert.alert("Permisos ya activados", "Ya tienes acceso a las notificaciones.");
+            Alert.alert("¡Permiso otorgado!", "Gracias por activar las notificaciones.");
+        } else {
+            Alert.alert("Permiso no otorgado", "No podrás recibir notificaciones push.");
         }
     };
 
@@ -74,6 +81,14 @@ export function HomeView() {
                 return {};
         }
     };
+
+    if (comprobandoPermiso) {
+        return (
+            <View style={styles.containerPermisos}>
+                <Text style={styles.textPermiso}>Comprobando permisos...</Text>
+            </View>
+        );
+    }
 
     if (!permisoOtorgado) {
         return (
