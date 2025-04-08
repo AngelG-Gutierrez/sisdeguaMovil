@@ -6,6 +6,7 @@ import { ProfileService } from "./services/profileService";
 import { useEffect, useState } from "react";
 import AntDesign from '@expo/vector-icons/AntDesign';
 import ModalUpdateData from "./modalUpdateData";
+import SolicitarPermisosNotificaciones from "../sensorData/services/ButtonNotification";
 
 export function ConfigurationView(){
     const [userName, setUserName] = useState("");
