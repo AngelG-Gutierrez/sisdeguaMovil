@@ -37,4 +37,3 @@ yarn-error.*
 
 app-example
 lib/dataStax.ts
-components/features/sensorData/dataSource/*
