@@ -15,7 +15,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.ang205gtz.sisdegua"
     },
     "web": {
       "bundler": "metro",
@@ -36,14 +37,10 @@
       [
         "expo-notifications",
         {
-          "icon": "./local/assets/notification_icon.png",
+          "icon": "./assets/images/icon.png",
           "color": "#ffffff",
           "defaultChannel": "default",
-          "sounds": [
-            "./local/assets/notification_sound.wav",
-            "./local/assets/notification_sound_other.wav"
-          ],
-          "enableBackgroundRemoteNotifications": false
+          "enableBackgroundRemoteNotifications": true
         }
       ]
     ],
@@ -51,12 +48,11 @@
       "typedRoutes": true
     },
     "extra": {
-      "projectId": "98dcc2c2-974a-497c-b7a9-236b2a68506e",
       "router": {
         "origin": false
       },
       "eas": {
-        "projectId": "98dcc2c2-974a-497c-b7a9-236b2a68506e"
+        "projectId": "4f9b8822-13c9-4a54-aad2-1c263c4594e3"
       }
     },
     "runtimeVersion": {
